@@ -1,0 +1,73 @@
+# 更新记录
+
+版本号同时写在本文件和 `SKILL.md` 开头的 `version` 字段。
+
+## v1.3.0（2026-09-04）· 首个开源版本
+
+规则、脚本、两份审查提示词、演练案例全部开放。相对上一个内部版本没有删任何能力，
+改的是发行方式和几处只有发行才需要的东西：
+
+- **双许可**：代码（`scripts/` `obsidian/*.py` `mcp/` `install/`）MIT；
+  规则与文档（`SKILL.md` `references/` 及各 md）CC BY-NC-SA 4.0。
+  个人和单位自用免费，包进收费产品或收费服务流程需要另外授权。见 `LICENSE` 和 `LICENSE-DOCS`。
+- **`strip_personal.py` 改成通用工具**。以前作者的名字、账号、域名、在审案件关键词是写死在代码里的，
+  现在内置模式只留通用的（邮箱地址、个人绝对路径、常见密钥前缀），个人化的模式写进
+  `strip_personal.rules.json`（`.gitignore` 已忽略），或用 `--rules` 指定。
+  样例见 `scripts/strip_personal.rules.example.json`。顺带修了一个误报：
+  `mermaid@11.4.1` 这种版本号以前会被当成邮箱地址。
+- 新增 `README.en.md`（英文）、`CONTRIBUTING.md`、`.gitignore`。
+- 删掉只对内部发行有意义的《售后与更新》和付费使用许可。
+
+---
+
+以下是开源之前的版本历史，按能力归并，保留是为了让人看清每样东西是什么时候、
+因为什么加进来的。
+
+## v1.2.x（2026-09-04）· 出图、公式、材料转换、国知局检索
+
+- **附图改成"画"出来的**：`scripts/mermaid_render.py` + `scripts/browser.py` +
+  `scripts/vendor/mermaid.min.js`。md 里写 `mermaid` 围栏，跑一条命令出 PNG，
+  围栏原地换成 `![图 N](…)`，源码另存 `.mmd`。用本机 Chrome / Edge 渲染，不联网、不装 Node。
+  以前靠 `make_figure.py` 按 JSON/YAML 摆框，复杂流程图要手工调坐标，现在它降级成备选。
+- **Word 里的公式能双击编辑**：`scripts/math_to_omml.py` 把 LaTeX 转成 Office Math（OMML）。
+  没装 `latex2mathml` 时不报错，公式按 LaTeX 原文留着。
+- **`scripts/pptx_to_md.py`**：发明人常给 PPT，以前得手工誊。
+- **`scripts/revision_log.py`**：每轮改稿/评审/答复/检索往案件目录追加一条修订记录。
+- **新的交底书模板** `references/disclosure-template.md`：固定七章 + 「附：证据状态」一节。
+  核心规矩是方案要写厚到本领域的人照着能做出来，同时每条机制标清是材料里本来就有的、
+  还是技能替他补写的——只写厚不标来源，代理人会把补写的当成已实现的写进权利要求。
+- **国家知识产权局「中国专利公布公告」检索** `scripts/cnipa_search.py`，接进
+  `prior_art_search.py cnipa`。在这之前国内直连的机器没有中文专利库可用。
+  官方库，回中文标题、中文摘要、IPC 分类号和官方链接；结果页 HTML 全程只在内存里，不落盘。
+  规则里写死两轮走法：第一轮关键词召回顺带拿 IPC，第二轮带 `--class` 收口。
+  0 条命中是检索结论不是故障（退出码 0），只有入口打不开才算失败。
+- 上面出图、公式、PPT 转换三条工具链按 MIT 规矩改编自
+  [handsomestWei/patent-disclosure-skill](https://github.com/handsomestWei/patent-disclosure-skill)，
+  署名与逐条改动见 `THIRD_PARTY_NOTICES.md`。
+- 全包统一了脚本的机读约定：成功 stdout 最后一行 `OK: 键=值`，失败 stderr 一行 `FAIL: 原因`，
+  退出码 2 = 依赖或入口不可用，1 = 输入或运行错误。
+- 自检脚本以前会假通过：一个宿主都没找到时照样报「全部正常」。现在这种情况明说没验、退出码 2。
+
+## v1.1.x（2026-09-03）· 检索去掉 key，检索轨迹图谱
+
+- **检索不再需要任何配置**：没有服务、没有 key、没有账号。
+  `scripts/prior_art_search.py` 免 key 直连 Google Patents（检索 + 全文）、
+  OpenAlex / arXiv、GitHub，外加一条入口探测；打不开的库如实写成「入口不可用」，
+  绝不写成「未发现现有技术」。明确不承诺检索得全，报告末尾附检索式清单。
+- **检索轨迹台账与图谱**：`references/search-trail.md` 定了固定格式的台账，
+  `obsidian/build_search_trail.py` 把它画成图——轮次 → 文献 → 候选 → 最终去向，
+  一个双击即开的单文件网页（可拖拽缩放的力导向图 + 四列流程图 + 地图式图例，能导出 PNG），
+  外加一套 Obsidian 双链笔记。解决的是"查过几十篇、打掉好几个候选，
+  申请文件里一个字都看不到"这件事。
+
+## v1.0.x（2026-08-29 起）· 首个版本
+
+- 规则文件 + 两份独立审查提示词（平衡模拟实质审查、对抗式驳回压力测试）
+- 发明点选题不受用户材料完成度限制：领域问题清单、拟议方案路线、选点四问
+- 形式检查 `scripts/check_patent_package.py`（docx / md / txt，不用模型）
+- Obsidian 案件图谱 `obsidian/build_case_graph.py` + 配好配色的库模板（纯标准库）
+- 虚构演练案例 `examples/demo-case/`（一份埋了 12 个坑的申请文件 + 虚构代码和测试）
+- 文档工具：docx ↔ md 互转（可提交排版：宋体黑体、A4、页码、附图嵌入）、PDF 抽文本
+- `mcp/local_tools.py`：宿主没有终端时，把本地脚本包成 MCP 工具服务
+- 五宿主一键安装脚本（macOS / Linux / Windows）+ 装后自检
+- `references/official/`：专利法、实施细则、审查指南第 84 号令的条文原文摘录，断网也能核条款号

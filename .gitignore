@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+.venv/
+venv/
+*.egg-info/
+
+# 个人化的脱敏规则：写你自己的名字、账号、域名、在审案件关键词，不要提交
+strip_personal.rules.json
+scripts/strip_personal.rules.json
+
+# 本地跑出来的产物
+*.docx
+*.png
+!examples/**/*.png
+mermaid_figures/

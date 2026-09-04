@@ -1,0 +1,19 @@
+# 全量依赖：把包里所有可选功能都打开。
+# 一条命令：pip3 install -r requirements-full.txt
+#
+# 说明：技能规则本身（SKILL.md + references/）是纯 Markdown，一个依赖都不装也能用；
+# 检索脚本（scripts/prior_art_search.py）和 mcp/ 里的两个脚本只用标准库，不需要额外依赖；
+# 只有查国知局公布公告的 cnipa 子命令要 playwright 加本机 Chrome/Edge。
+# 下面这些只服务 scripts/ 里的转换与附图工具。
+
+# --- 和 requirements-min.txt 相同的四样 ---
+python-docx>=1.1          # docx_to_md.py / md_to_docx.py：读写 Word（MIT）
+pypdf>=4.0                # pdf_to_text.py：从 PDF 抽文字（BSD）
+matplotlib>=3.7           # make_figure.py：出黑白框图/流程图 PNG（PSF-based）
+latex2mathml>=3.77        # md_to_docx.py：LaTeX 公式转成 Word 可编辑公式；不装则公式按原文保留（MIT）
+
+# --- 全量版多出来的几样 ---
+pyyaml>=6.0               # make_figure.py 读 YAML 描述；只用 JSON 描述可以不装（MIT）
+rapidocr-onnxruntime>=1.3 # pdf_to_text.py --ocr：扫描版通知书才需要，装包约 100MB（Apache-2.0）
+python-pptx>=1.0          # pptx_to_md.py：PPT 转 Markdown（MIT）
+playwright>=1.40          # mermaid_render.py 出图 + cnipa_search.py 查国知局公布公告：都驱动本机 Chrome/Edge；没有浏览器再跑 playwright install chromium（Apache-2.0）

@@ -1,0 +1,466 @@
+{
+ "nodes": [
+  {
+   "id": "n000",
+   "type": "text",
+   "text": "## demo-case\n[[案件总览]]",
+   "x": -420,
+   "y": -260,
+   "width": 400,
+   "height": 100,
+   "color": "3"
+  },
+  {
+   "id": "n001",
+   "type": "text",
+   "text": "**[[D1]]**\nCN119876543A 《一种基于固定静默期的告警去重方法》（虚构",
+   "x": -1300,
+   "y": 0,
+   "width": 340,
+   "height": 130,
+   "color": "2"
+  },
+  {
+   "id": "n002",
+   "type": "text",
+   "text": "**[[D2]]**\nCN119876544A 《告警等级分类推送系统》（虚构",
+   "x": -1300,
+   "y": 170,
+   "width": 340,
+   "height": 130,
+   "color": "2"
+  },
+  {
+   "id": "n003",
+   "type": "text",
+   "text": "**[[权利要求 1]]**（独立）\n一种日志告警抑制方法，其特征在于，包括：接收告警消息并提取来源与标题； 将标题中的 UUID、时间戳和数字替换为通配符后…",
+   "x": -420,
+   "y": 0,
+   "width": 400,
+   "height": 130,
+   "color": "5"
+  },
+  {
+   "id": "n004",
+   "type": "text",
+   "text": "**[[权利要求 2]]**（从属）\n根据权利要求1所述的方法，其特征在于，所述退避倍数为 2。…",
+   "x": -420,
+   "y": 170,
+   "width": 400,
+   "height": 130,
+   "color": "5"
+  },
+  {
+   "id": "n005",
+   "type": "text",
+   "text": "**[[权利要求 3]]**（从属）\n根据权利要求1所述的方法，其特征在于，所述基础窗口按照 P0、P1、P2 三个等级分别设置。…",
+   "x": -420,
+   "y": 340,
+   "width": 400,
+   "height": 130,
+   "color": "5"
+  },
+  {
+   "id": "n006",
+   "type": "text",
+   "text": "**[[权利要求 4]]**（从属）\n根据权利要求5所述的方法，其特征在于，当一个窗口内计数器为零时， 下一个窗口的连续吵闹次数减一且不小于零。…",
+   "x": -420,
+   "y": 510,
+   "width": 400,
+   "height": 130,
+   "color": "5"
+  },
+  {
+   "id": "n007",
+   "type": "text",
+   "text": "**[[权利要求 5]]**（从属）\n根据权利要求1所述的方法，其特征在于，所述摘要消息中包含本窗口合并的告警条数。…",
+   "x": -420,
+   "y": 680,
+   "width": 400,
+   "height": 130,
+   "color": "5"
+  },
+  {
+   "id": "n008",
+   "type": "text",
+   "text": "**[[权利要求 6]]**（从属）\n一种日志告警抑制系统，其特征在于，用于执行权利要求1至5任一项所述的方法。…",
+   "x": -420,
+   "y": 850,
+   "width": 400,
+   "height": 130,
+   "color": "5"
+  },
+  {
+   "id": "n009",
+   "type": "text",
+   "text": "**[[特征 F1]]**\n窗口长度按等级基础窗口乘退避倍数的连续吵闹次数次幂确定并封顶\n结论：强支点",
+   "x": 240,
+   "y": 0,
+   "width": 340,
+   "height": 130,
+   "color": "6"
+  },
+  {
+   "id": "n010",
+   "type": "text",
+   "text": "**[[特征 F2]]**\n窗口内等级升高立即放行并提前结算重开窗口\n结论：可争辩",
+   "x": 240,
+   "y": 170,
+   "width": 340,
+   "height": 130,
+   "color": "6"
+  },
+  {
+   "id": "n011",
+   "type": "text",
+   "text": "**[[特征 F3]]**\n标题抹变量取哈希得到告警指纹\n结论：可争辩",
+   "x": 240,
+   "y": 340,
+   "width": 340,
+   "height": 130,
+   "color": "6"
+  },
+  {
+   "id": "n012",
+   "type": "text",
+   "text": "**[[SRC-CODE-001]]**",
+   "x": 880,
+   "y": 0,
+   "width": 260,
+   "height": 80,
+   "color": "4"
+  },
+  {
+   "id": "n013",
+   "type": "text",
+   "text": "**[[SRC-DATA-001]]**",
+   "x": 880,
+   "y": 170,
+   "width": 260,
+   "height": 80,
+   "color": "4"
+  },
+  {
+   "id": "n014",
+   "type": "text",
+   "text": "**[[SRC-TEST-001]]**",
+   "x": 880,
+   "y": 340,
+   "width": 260,
+   "height": 80,
+   "color": "4"
+  },
+  {
+   "id": "n015",
+   "type": "text",
+   "text": "**[[CLM-01]]** 重要\n独立权利要求塞入全部可选增强",
+   "x": -420,
+   "y": 1180,
+   "width": 400,
+   "height": 100,
+   "color": "1"
+  },
+  {
+   "id": "n016",
+   "type": "text",
+   "text": "**[[CLR-01]]** 重要\n术语前后不一致",
+   "x": -420,
+   "y": 1310,
+   "width": 400,
+   "height": 100,
+   "color": "1"
+  },
+  {
+   "id": "n017",
+   "type": "text",
+   "text": "**[[FORM-01]]** 建议\n图号不连续",
+   "x": -420,
+   "y": 1440,
+   "width": 400,
+   "height": 100,
+   "color": "2"
+  },
+  {
+   "id": "n018",
+   "type": "text",
+   "text": "**[[NOV-01]]** 建议\n新颖性核对（对 D1）",
+   "x": -420,
+   "y": 1570,
+   "width": 400,
+   "height": 100,
+   "color": "2"
+  }
+ ],
+ "edges": [
+  {
+   "id": "e000",
+   "fromNode": "n004",
+   "fromSide": "left",
+   "toNode": "n003",
+   "toSide": "right",
+   "label": "引用",
+   "color": "5"
+  },
+  {
+   "id": "e001",
+   "fromNode": "n005",
+   "fromSide": "left",
+   "toNode": "n003",
+   "toSide": "right",
+   "label": "引用",
+   "color": "5"
+  },
+  {
+   "id": "e002",
+   "fromNode": "n006",
+   "fromSide": "left",
+   "toNode": "n007",
+   "toSide": "right",
+   "label": "引用",
+   "color": "5"
+  },
+  {
+   "id": "e003",
+   "fromNode": "n007",
+   "fromSide": "left",
+   "toNode": "n003",
+   "toSide": "right",
+   "label": "引用",
+   "color": "5"
+  },
+  {
+   "id": "e004",
+   "fromNode": "n008",
+   "fromSide": "left",
+   "toNode": "n003",
+   "toSide": "right",
+   "label": "引用",
+   "color": "5"
+  },
+  {
+   "id": "e005",
+   "fromNode": "n008",
+   "fromSide": "left",
+   "toNode": "n004",
+   "toSide": "right",
+   "label": "引用",
+   "color": "5"
+  },
+  {
+   "id": "e006",
+   "fromNode": "n008",
+   "fromSide": "left",
+   "toNode": "n005",
+   "toSide": "right",
+   "label": "引用",
+   "color": "5"
+  },
+  {
+   "id": "e007",
+   "fromNode": "n008",
+   "fromSide": "left",
+   "toNode": "n006",
+   "toSide": "right",
+   "label": "引用",
+   "color": "5"
+  },
+  {
+   "id": "e008",
+   "fromNode": "n008",
+   "fromSide": "left",
+   "toNode": "n007",
+   "toSide": "right",
+   "label": "引用",
+   "color": "5"
+  },
+  {
+   "id": "e009",
+   "fromNode": "n001",
+   "fromSide": "right",
+   "toNode": "n003",
+   "toSide": "left",
+   "label": "命中",
+   "color": "2"
+  },
+  {
+   "id": "e010",
+   "fromNode": "n002",
+   "fromSide": "right",
+   "toNode": "n003",
+   "toSide": "left",
+   "label": "命中",
+   "color": "2"
+  },
+  {
+   "id": "e011",
+   "fromNode": "n003",
+   "fromSide": "right",
+   "toNode": "n009",
+   "toSide": "left",
+   "label": "区别特征",
+   "color": "6"
+  },
+  {
+   "id": "e012",
+   "fromNode": "n002",
+   "fromSide": "right",
+   "toNode": "n009",
+   "toSide": "left",
+   "label": "映射/组合",
+   "color": "2"
+  },
+  {
+   "id": "e013",
+   "fromNode": "n001",
+   "fromSide": "right",
+   "toNode": "n009",
+   "toSide": "left",
+   "label": "映射/组合",
+   "color": "2"
+  },
+  {
+   "id": "e014",
+   "fromNode": "n003",
+   "fromSide": "right",
+   "toNode": "n010",
+   "toSide": "left",
+   "label": "区别特征",
+   "color": "6"
+  },
+  {
+   "id": "e015",
+   "fromNode": "n001",
+   "fromSide": "right",
+   "toNode": "n010",
+   "toSide": "left",
+   "label": "映射/组合",
+   "color": "2"
+  },
+  {
+   "id": "e016",
+   "fromNode": "n003",
+   "fromSide": "right",
+   "toNode": "n011",
+   "toSide": "left",
+   "label": "区别特征",
+   "color": "6"
+  },
+  {
+   "id": "e017",
+   "fromNode": "n001",
+   "fromSide": "right",
+   "toNode": "n011",
+   "toSide": "left",
+   "label": "映射/组合",
+   "color": "2"
+  },
+  {
+   "id": "e018",
+   "fromNode": "n003",
+   "fromSide": "right",
+   "toNode": "n012",
+   "toSide": "left",
+   "label": "证据",
+   "color": "4"
+  },
+  {
+   "id": "e019",
+   "fromNode": "n003",
+   "fromSide": "right",
+   "toNode": "n014",
+   "toSide": "left",
+   "label": "证据",
+   "color": "4"
+  },
+  {
+   "id": "e020",
+   "fromNode": "n007",
+   "fromSide": "right",
+   "toNode": "n014",
+   "toSide": "left",
+   "label": "证据",
+   "color": "4"
+  },
+  {
+   "id": "e021",
+   "fromNode": "n015",
+   "fromSide": "top",
+   "toNode": "n003",
+   "toSide": "bottom",
+   "label": "指向",
+   "color": "1"
+  },
+  {
+   "id": "e022",
+   "fromNode": "n016",
+   "fromSide": "top",
+   "toNode": "n003",
+   "toSide": "bottom",
+   "label": "指向",
+   "color": "1"
+  },
+  {
+   "id": "e023",
+   "fromNode": "n016",
+   "fromSide": "top",
+   "toNode": "n004",
+   "toSide": "bottom",
+   "label": "指向",
+   "color": "1"
+  },
+  {
+   "id": "e024",
+   "fromNode": "n016",
+   "fromSide": "top",
+   "toNode": "n005",
+   "toSide": "bottom",
+   "label": "指向",
+   "color": "1"
+  },
+  {
+   "id": "e025",
+   "fromNode": "n016",
+   "fromSide": "top",
+   "toNode": "n006",
+   "toSide": "bottom",
+   "label": "指向",
+   "color": "1"
+  },
+  {
+   "id": "e026",
+   "fromNode": "n016",
+   "fromSide": "top",
+   "toNode": "n007",
+   "toSide": "bottom",
+   "label": "指向",
+   "color": "1"
+  },
+  {
+   "id": "e027",
+   "fromNode": "n016",
+   "fromSide": "top",
+   "toNode": "n008",
+   "toSide": "bottom",
+   "label": "指向",
+   "color": "1"
+  },
+  {
+   "id": "e028",
+   "fromNode": "n018",
+   "fromSide": "top",
+   "toNode": "n003",
+   "toSide": "bottom",
+   "label": "指向",
+   "color": "1"
+  },
+  {
+   "id": "e029",
+   "fromNode": "n017",
+   "fromSide": "top",
+   "toNode": "n003",
+   "toSide": "bottom",
+   "label": "指向",
+   "color": "1"
+  }
+ ]
+}

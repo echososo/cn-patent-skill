@@ -1,0 +1,6 @@
+# 技能规则本身零依赖；下面只是 scripts/ 转换与附图工具的依赖。
+# 一条命令：pip3 install -r requirements-min.txt
+python-docx>=1.1
+pypdf>=4.0
+matplotlib>=3.7
+latex2mathml>=3.77

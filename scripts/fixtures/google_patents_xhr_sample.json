@@ -1,0 +1,95 @@
+{
+ "results": {
+  "total_num_results": 514,
+  "total_num_pages": 52,
+  "num_page": 0,
+  "cluster": [
+   {
+    "result": [
+     {
+      "id": "patent/CN107196804B/zh",
+      "rank": 0,
+      "patent": {
+       "title": " 电力系统终端通信接入网告警集中监控系统及方法",
+       "snippet": " 本发明公开了电力系统终端通信接入网告警集中监控系统及方法，包括：告警采集，接收各设备网管系统上报的实时告警消息，将设备网管系统的实时告警信息同步给告警处理器模块，为告警的监视和处理提供数据源；告警预处理，对采集的告警信息进行归一化处理和分类压缩；告警监视，在告警操作台和网络拓扑图上实时展示预处理后的各类告警信息，以及将重要告警通过短信、邮件和站内消息手段前转给运维人员重点关注；故障诊断，依据告警处理经验库中的经验对告警进行分析诊断和定性，识别引发告警的各类可能故障原因；故障处理调度，依据故障诊断的结果定位故障点的地理位置及责任运维班组，处理工单，调度相关运维班组开展缺陷故障的排除工作。",
+       "priority_date": "2017-06-01",
+       "filing_date": "2017-06-01",
+       "grant_date": "2020-07-10",
+       "publication_date": "2020-07-10",
+       "inventor": "周洁",
+       "assignee": "国网山东省电力公司信息通信公司",
+       "publication_number": "CN107196804B",
+       "language": "zh",
+       "thumbnail": "32/72/26/71f1cbab84a858/HDA0001310460250000011.png",
+       "pdf": "b8/96/f2/a2af6b8d184319/CN107196804B.pdf",
+       "figures": [
+        {
+         "thumbnail": "7a/91/12/fdc7af85ed9242/HDA0001310460250000011.png",
+         "full": "a1/57/7c/b31849cdd5ab75/HDA0001310460250000011.png"
+        }
+       ],
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "CN",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": false,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     },
+     {
+      "id": "patent/CN110417623B/zh",
+      "rank": 1,
+      "patent": {
+       "title": " 智能变电站以太网交换机故障诊断方法",
+       "snippet": " 一种智能变电站以太网交换机故障诊断方法，包括以下步骤：A、数据采集，变电站监控系统根据交换机检测信息模型定期获取交换机检测量，交换机检测信息模型包括交换机外部参数、软件配置参数、硬件配置参数和其他类；B、基于上述交换机状态检测量，通过自动检测方法诊断交换机的故障，自动检测方法依次按顺序进行装置外部到交换机检测、交换机软件检测和交换机硬件检测，并对自动检测的结果进行故障判断；C、针对自动检测的故障进行后台监控反馈，提供故障诊断定位并进行故障排除。本发明能让交换机故障诊断更加智能和快速，保证了变电站消缺效率和投运成功。",
+       "priority_date": "2019-08-17",
+       "filing_date": "2019-08-17",
+       "grant_date": "2023-03-31",
+       "publication_date": "2023-03-31",
+       "inventor": "黎强",
+       "assignee": "长园深瑞继保自动化有限公司",
+       "publication_number": "CN110417623B",
+       "language": "zh",
+       "thumbnail": "f1/45/ef/1382c1d291bf53/HDA0002170336620000011.png",
+       "pdf": "66/34/da/22e406455f19d1/CN110417623B.pdf",
+       "figures": [
+        {
+         "thumbnail": "cf/25/e0/a3a6d3bd6d3590/HDA0002170336620000011.png",
+         "full": "cf/97/85/5681718b1a9667/HDA0002170336620000011.png"
+        }
+       ],
+       "family_metadata": {
+        "aggregated": {
+         "country_status": [
+          {
+           "country_code": "CN",
+           "best_patent_stage": {
+            "state": "ACTIVE"
+           }
+          }
+         ]
+        }
+       }
+      },
+      "is_similar_document": false,
+      "entity_matches": {
+       "additional": 0
+      },
+      "measure_matches": {}
+     }
+    ]
+   }
+  ]
+ }
+}

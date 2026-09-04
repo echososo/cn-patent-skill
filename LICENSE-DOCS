@@ -1,0 +1,57 @@
+# 规则与文档的许可 · License for the rules and prose
+
+**中文**
+
+本仓库里的**规则文本与文档**——`SKILL.md`、`references/` 下的全部内容（含
+`references/prompts/` 两份审查提示词）、`README.md`、`README.en.md`、`INSTALL.md`、
+`CHANGELOG.md`、`examples/` 里的说明性文字——按
+**知识共享 署名-非商业性使用-相同方式共享 4.0 国际（CC BY-NC-SA 4.0）** 授权。
+
+大白话：
+
+- **个人自己用，随便用。** 拿它写你自己的专利、你所在单位的专利，改成你自己的版本，都行，不用问。
+- **署名。** 用了、改了、转载了，注明出处（仓库地址）和有改动。
+- **相同方式共享。** 你基于这些规则改出来的规则文本，要用同一个许可放出来。
+- **不能拿去做商业服务。** 把这些规则包进收费产品、收费 SaaS、代理所对外收费的服务流程里，
+  或者做成付费课程／付费知识库，需要另外获得授权。想商用，开个 issue 谈。
+- **你用它写出来的东西是你的。** 申请文件、交底书、审查报告、检索记录，
+  这些产出不受本许可约束，随便用，包括商业用途。
+
+许可全文：<https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hans>
+
+例外：`references/official/` 下的三份文件是中国法律法规和国家机关文件的原文照录。
+按《中华人民共和国著作权法》第五条，这类文件不适用著作权法，任何人可以自由使用。
+
+---
+
+**English**
+
+The **rules and prose** in this repository — `SKILL.md`, everything under
+`references/` (including the two examiner prompts in `references/prompts/`),
+`README.md`, `README.en.md`, `INSTALL.md`, `CHANGELOG.md`, and the explanatory
+text in `examples/` — are licensed under
+**Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0)**.
+
+In plain terms:
+
+- **Free for personal and in-house use.** Draft your own patents with it, adapt
+  it for your own team, no permission needed.
+- **Attribute** the source repository and note that you changed things.
+- **ShareAlike**: derived rule text must be released under the same license.
+- **No commercial services.** Bundling these rules into a paid product, a paid
+  SaaS, a fee-charging patent agency workflow, or a paid course/knowledge base
+  requires a separate license. Open an issue to discuss commercial terms.
+- **What you produce with it is yours** — applications, disclosures, review
+  reports, search records — unrestricted, commercial use included.
+
+Full text: <https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode>
+
+Exception: the three files under `references/official/` are verbatim
+reproductions of Chinese statutes and state-organ documents, which Article 5 of
+the Copyright Law of the PRC places outside copyright.
+
+---
+
+The **code** (`scripts/`, `obsidian/*.py`, `mcp/`, `install/`) is MIT — see `LICENSE`.
+Third-party code and assets keep their own licenses — see `THIRD_PARTY_NOTICES.md`.
