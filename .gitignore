@@ -9,8 +9,6 @@ venv/
 strip_personal.rules.json
 scripts/strip_personal.rules.json
 
-# 本地跑出来的产物
-*.docx
-*.png
-!examples/**/*.png
-mermaid_figures/
+# 你自己跑出来的产物（examples/ 和 docs/ 里的是仓库自带的示例，不在此列）
+/outputs/
+/申请工作区-*/

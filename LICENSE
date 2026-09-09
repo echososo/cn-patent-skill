@@ -1,26 +1,64 @@
-MIT License
+# 许可 · License
 
-Copyright (c) 2026 patent-writing-pro contributors
+**中文在前，English below.**
 
-Applies to the CODE in this repository: `scripts/`, `obsidian/*.py`, `mcp/`,
-`install/`, and any other source file, EXCEPT third-party files listed in
-THIRD_PARTY_NOTICES.md (which carry their own MIT notices) and EXCEPT the
-prose documents covered by LICENSE-DOCS (see that file).
+---
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## 中文
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+本仓库按 **知识共享 署名—非商业性使用—相同方式共享 4.0 国际（CC BY-NC-SA 4.0）** 授权，
+**规则文本和代码都一样**。
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+许可全文：<https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode.zh-Hans>
+
+### 大白话
+
+- **自己用，随便用。** 拿它写你自己的专利、你所在单位的专利，装进你自己的 agent，
+  按需要改成你自己的版本，都行，不用问，不用付钱。
+- **署名。** 用了、改了、转载了，注明出处（本仓库地址）并说明有改动。
+- **相同方式共享。** 你基于它改出来的版本，要用同一个许可放出来。
+- **不能拿去做商业服务。** 包进收费产品、收费 SaaS、代理所或事务所对外收费的服务流程、
+  付费课程、付费知识库，都要另外获得授权。想商用，**开一个 issue 谈**。
+- **你用它写出来的东西是你的。** 申请文件、交底书、审查报告、检索记录，这些产出
+  **不受本许可约束**，随便用，包括商业用途——你自己的专利当然是你自己的。
+
+### 两处例外
+
+1. `references/official/` 下的三份文件，是中国法律法规和国家机关文件的**原文照录**。
+   按《中华人民共和国著作权法》第五条，这类文件不适用著作权法，任何人可以自由使用。
+2. `THIRD_PARTY_NOTICES.md` 里列出的第三方代码与资源，**保持它们各自原有的许可**（MIT），
+   本许可不覆盖、也无权覆盖它们。
+
+### 不作保证
+
+本仓库按"现状"提供。作者不保证输出正确、完整或适合特定用途，不保证任何专利申请获得授权。
+它是撰写辅助工具，不构成法律意见，作者不是你的专利代理机构，使用它不产生委托代理关系。
+重要案件请咨询执业专利代理师。
+
+---
+
+## English
+
+This repository is licensed under
+**Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0)** — rules and code alike.
+
+Full text: <https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode>
+
+- **Free for personal and in-house use.** Draft your own patents with it, adapt it
+  for your own team, install it into your own agent. No permission needed, no fee.
+- **Attribute** this repository and state that you made changes.
+- **ShareAlike**: derived versions must ship under the same license.
+- **No commercial services.** Bundling it into a paid product, a paid SaaS, a
+  fee-charging patent agency or law firm workflow, a paid course or knowledge base
+  requires a separate license. **Open an issue to discuss commercial terms.**
+- **What you produce with it is yours** — applications, disclosures, review reports,
+  search records — unrestricted, commercial use included.
+
+Two exceptions: the three files under `references/official/` are verbatim
+reproductions of Chinese statutes and state-organ documents, which Article 5 of the
+Copyright Law of the PRC places outside copyright; and the third-party code and
+assets listed in `THIRD_PARTY_NOTICES.md` keep their own (MIT) licenses.
+
+Provided "as is", without warranty. Drafting assistance only — not legal advice,
+no guarantee of grant, no attorney-client relationship.

@@ -380,5 +380,17 @@ class 命令行(unittest.TestCase):
         self.assertIn("不判断新颖性", self.run_cli(str(BAD_DRAFT)).stdout)
 
 
+
+class 附图引用不误报(unittest.TestCase):
+    """mermaid_render.py 写出的图片路径不该被本脚本当成代码标识（两个脚本别打架）。"""
+
+    def test_图片路径不算代码标识(self):
+        text = "具体实施方式\n\n![图 1](mermaid_figures/fig_001.png)\n\n如图 1 所示……\n"
+        self.assertEqual(cpp.strip_md_link_targets(text).count("fig_001"), 0)
+
+    def test_正文里的下划线标识仍然报(self):
+        text = "本步骤调用 alert_suppressor 完成合并。\n"
+        self.assertIn("alert_suppressor", cpp.strip_md_link_targets(text))
+
 if __name__ == "__main__":
     unittest.main()

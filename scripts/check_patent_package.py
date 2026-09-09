@@ -58,6 +58,14 @@ FRAMEWORK_PATTERN = re.compile(
 )
 SNAKE_CASE_PATTERN = re.compile(r"(?<![A-Za-z0-9])([a-z][a-z0-9]*(?:_[a-z0-9]+)+)(?![A-Za-z0-9])")
 API_PATH_PATTERN = re.compile(r"(?<!\w)/(?:api|v\d+|internal)/[A-Za-z0-9_./{}-]+", re.I)
+# 附图引用 ![图 1](mermaid_figures/fig_001.png) 里的路径不是正文里的代码标识：
+# 那是本包 mermaid_render.py 自己写出来的，扫成「疑似代码变量」是自家两个脚本打架。
+MD_IMAGE_LINK_RE = re.compile(r"!?\[[^\]\n]*\]\([^)\n]*\)")
+
+
+def strip_md_link_targets(text: str) -> str:
+    """把 markdown 图片/链接整段挖掉，只留一个空格，供标识类扫描用。"""
+    return MD_IMAGE_LINK_RE.sub(" ", text)
 
 
 @dataclass
@@ -302,9 +310,10 @@ def analyze(document: LoadedDocument) -> tuple[list[Issue], dict[str, object]]:
         for match in pattern.finditer(text):
             issues.append(Issue("WARN", "overstrong-conclusion", f"发现可能缺少成立边界的过强结论：{label}。", snippet(text, match)))
 
-    identifiers = sorted(set(SNAKE_CASE_PATTERN.findall(text)))
-    frameworks = sorted(set(match.group(0) for match in FRAMEWORK_PATTERN.finditer(text)), key=str.lower)
-    api_paths = sorted(set(API_PATH_PATTERN.findall(text)))
+    scan_text = strip_md_link_targets(text)
+    identifiers = sorted(set(SNAKE_CASE_PATTERN.findall(scan_text)))
+    frameworks = sorted(set(match.group(0) for match in FRAMEWORK_PATTERN.finditer(scan_text)), key=str.lower)
+    api_paths = sorted(set(API_PATH_PATTERN.findall(scan_text)))
     if identifiers:
         sample = ", ".join(identifiers[:8])
         suffix = "……" if len(identifiers) > 8 else ""

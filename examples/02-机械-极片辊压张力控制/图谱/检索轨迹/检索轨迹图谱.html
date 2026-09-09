@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<!-- generated-by: build_search_trail -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>检索轨迹图谱：极片辊压张力闭环控制</title>
+<style>
+:root{--bg:#f6f4ef;--panel:#fff;--ink:#1f2328;--muted:#6b7280;--line:#d9d4c7;--acc:#2f7fc1}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.6 -apple-system,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif}
+header{padding:22px 28px 0;background:var(--panel)}
+.eyebrow{font-size:11px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+h1{margin:0;font-size:22px;font-weight:600;letter-spacing:.01em}
+.sub{color:var(--muted);font-size:12.5px;margin-top:6px}
+.sub span{margin-right:18px}
+.stats{display:flex;flex-wrap:wrap;gap:12px;padding:14px 28px 18px;background:var(--panel);border-bottom:1px solid var(--line)}
+.sg{display:flex;flex-direction:column;gap:8px;padding:10px 16px 12px;border:1px solid var(--line);border-radius:10px;background:#fbfaf7;box-shadow:0 1px 0 rgba(0,0,0,.02)}
+.sg .cap{font-size:11px;letter-spacing:.14em;color:var(--muted);display:flex;align-items:center;gap:6px}
+.sg .cap i{display:inline-block;width:8px;height:8px;border-radius:2px}
+.sg .row{display:flex;gap:0}
+.st{min-width:78px;padding:0 14px;border-left:1px solid var(--line)}
+.st:first-child{padding-left:0;border-left:0}
+.st b{display:block;font-size:26px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.st span{display:block;font-size:12px;color:var(--muted);margin-top:5px;white-space:nowrap}
+.bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding:10px 24px;font-size:13px}
+.bar button{font:inherit;padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer}
+.bar button:hover{border-color:var(--acc)}
+.bar .cur{font-weight:600;min-width:12em}
+.bar .hint{color:var(--muted);font-size:12px}
+.lg{display:grid;grid-template-columns:30px 1fr;gap:3px 8px;align-items:center;font-size:12.5px}
+.lg svg{display:block}
+.lg .n{color:var(--ink)}
+.lg .n small{color:var(--muted);margin-left:4px}
+.lgh{font-size:11px;color:var(--muted);letter-spacing:.12em;margin:12px 0 5px;padding-bottom:3px;border-bottom:1px solid var(--line)}
+.lgh:first-child{margin-top:0}
+.lgk{display:inline-block;min-width:22px;text-align:center;white-space:nowrap;font-size:12px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 5px}
+.back{font:inherit;font-size:12px;padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer;margin-bottom:8px}
+main{display:grid;grid-template-columns:1fr 320px;gap:0;min-height:520px}
+.gwrap{overflow:auto;background:var(--panel)}
+.ftools{display:flex;gap:12px;align-items:center;padding:8px 12px;font-size:12px;color:var(--muted);background:#f1ede3;border-bottom:1px solid var(--line)}
+.ftools button{font:inherit;font-size:12px;padding:3px 9px;border:1px solid var(--line);border-radius:6px;background:#fff;cursor:pointer}
+svg{display:block}
+.node{cursor:pointer}
+.node rect{stroke-width:1.5;stroke:#8a8f98;fill:#fff}
+.node text{font-size:12px;fill:var(--ink);pointer-events:none}
+.node .id{font-weight:600}
+.node.round rect{fill:#fff7d6;stroke:#c9a227}
+.node.doc rect{fill:#fff1e3;stroke:#e0962e}
+.node.common rect{fill:#f1f1f1;stroke:#9aa3ad;stroke-dasharray:3 3}
+.node.cand rect{fill:#f1ebfa;stroke:#7d5bb8}
+.node.fate rect{fill:#e8f1fa;stroke:#2f7fc1}
+.edge{fill:none;stroke-width:1.6;opacity:.85}
+.edge.found{stroke:#b9b2a3;stroke-width:1.1}
+.edge.fate{stroke-width:2.2}
+.edgelabel{font-size:10.5px;fill:#444;display:none;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}
+.lit .edgelabel{display:block}
+.ghost{opacity:.1}
+.dim{opacity:.18}
+.lit{opacity:1 !important}
+.lit rect{stroke-width:2.5}
+.col{font-size:12px;fill:var(--muted);font-weight:600}
+aside{padding:14px 16px;overflow:auto;background:#fbfaf7;font-size:13px}
+aside h2{font-size:15px;margin:0 0 6px}
+aside .k{color:var(--muted)}
+aside ol{padding-left:18px;margin:6px 0}
+aside li{margin:4px 0}
+aside .tag{display:inline-block;padding:1px 7px;border-radius:10px;font-size:11px;color:#fff;margin-right:4px}
+section{padding:16px 24px;border-top:1px solid var(--line)}
+section h2{font-size:16px;margin:0 0 8px}
+table{border-collapse:collapse;width:100%;font-size:12.5px;background:#fff}
+th,td{border:1px solid var(--line);padding:5px 8px;vertical-align:top;text-align:left}
+th{background:#f1ede3}
+td.c{white-space:nowrap}
+.glossary{background:var(--panel)}
+.gcols{display:grid;grid-template-columns:repeat(3,minmax(240px,1fr));gap:18px 36px}
+.gcols h3{font-size:12px;letter-spacing:.14em;color:var(--muted);margin:0 0 8px;padding-bottom:6px;border-bottom:1px solid var(--line)}
+.gcols dl{display:grid;grid-template-columns:max-content 1fr;gap:5px 12px;margin:0;font-size:12.5px;align-items:baseline}
+.gcols dt{font-weight:600;color:var(--ink);white-space:nowrap}
+.gcols dt.killed{color:#d94a3d}.gcols dt.near{color:#c27a12}.gcols dt.clear{color:#2f8a48}.gcols dt.away{color:#2f7fc1}.gcols dt.dim{color:#6b7280}
+.gcols dd{margin:0;color:var(--muted)}
+@media (max-width:1000px){.gcols{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.gcols{grid-template-columns:1fr}}
+.killed{color:#d94a3d}.near{color:#c27a12}.clear{color:#2f8a48}.away{color:#2f7fc1}
+footer{padding:16px 28px 30px;color:var(--muted);font-size:11.5px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 24px}
+.left{min-width:0;border-right:1px solid var(--line);background:var(--panel)}
+.tabs{display:flex;gap:6px;padding:8px 12px 0;background:var(--panel);border-bottom:1px solid var(--line)}
+.tabs button{font:inherit;padding:6px 14px;border:1px solid var(--line);border-bottom:0;border-radius:8px 8px 0 0;background:#f1ede3;cursor:pointer;color:var(--muted)}
+.tabs button.on{background:#fff;color:var(--ink);font-weight:600}
+#gview{position:relative;background:#0f1420}
+#gview.light{background:#fbfaf7}
+.gtools{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;padding:8px 12px;font-size:12px;background:rgba(255,255,255,.05);color:#c7cdd8;border-bottom:1px solid rgba(255,255,255,.08)}
+#gview.light .gtools{background:#f1ede3;color:var(--muted);border-bottom-color:var(--line)}
+.gtools button{font:inherit;font-size:12px;padding:3px 9px;border:1px solid rgba(255,255,255,.22);border-radius:6px;background:transparent;color:inherit;cursor:pointer}
+.gtools button:hover{border-color:#8ab4f8}
+#gview.light .gtools button{border-color:var(--line);color:var(--ink);background:#fff}
+.gtools .chip{display:inline-flex;align-items:center;gap:4px;cursor:pointer;user-select:none}
+.gtools .chip.off{opacity:.3;text-decoration:line-through}
+.gtools .chip i{display:inline-block;width:14px;height:3px;border-radius:2px}
+.gtools .sep{width:1px;height:16px;background:rgba(255,255,255,.18)}
+#gview.light .gtools .sep{background:var(--line)}
+#gc{display:block;cursor:grab}
+#gtip{position:absolute;pointer-events:none;background:rgba(20,24,34,.96);color:#e6e9ef;padding:7px 10px;border-radius:7px;font-size:12px;line-height:1.5;max-width:340px;display:none;border:1px solid rgba(255,255,255,.14);box-shadow:0 6px 20px rgba(0,0,0,.45)}
+#gtip b{color:#fff}
+.ghint{position:absolute;right:12px;bottom:8px;font-size:11px;color:#7d8798;pointer-events:none}
+#gview.light .ghint{color:var(--muted)}
+@media (max-width:900px){main{grid-template-columns:1fr}.left{border-right:0}}
+</style>
+</head>
+<body>
+<header>
+  <div class="eyebrow">检索轨迹图谱 · Search Trail</div>
+  <h1>极片辊压张力闭环控制</h1>
+  <div class="sub" id="sub"></div>
+</header>
+<div class="stats" id="tiles"></div>
+<div class="bar">
+  <button id="prev">◀ 上一轮</button><span class="cur" id="cur"></span><button id="next">下一轮 ▶</button>
+  <button id="all">显示全部</button>
+  <span class="hint">按时间回放：每按一次「下一轮」，这一轮查到的文献和它对候选的打击就点亮</span>
+</div>
+<main>
+  <div class="left">
+    <div class="tabs"><button id="tab-graph" class="on">图谱视图</button><button id="tab-flow">流程视图</button></div>
+    <div id="gview">
+      <div class="gtools">
+        <button id="g-expand">展开全部轮次</button><button id="g-collapse">收起全部轮次</button><button id="g-relayout">重新排布</button><button id="g-fit">适应窗口</button><button id="g-theme">浅色</button><button id="g-png">导出 PNG</button>
+        <span class="sep"></span>
+        <span class="chip" data-f="killed"><i style="background:#d94a3d"></i>已公开/实测推翻</span>
+        <span class="chip" data-f="near"><i style="background:#e0962e"></i>部分接近</span>
+        <span class="chip" data-f="clear"><i style="background:#3f9d5a"></i>未记载</span>
+        <span class="chip" data-f="away"><i style="background:#2f7fc1"></i>教导相反</span>
+        <span class="chip" data-f="decision"><i style="background:#8a8f98"></i>人为取舍</span>
+        <span class="chip" data-f="found"><i style="background:#5b6478"></i>检出</span>
+        <span class="chip" data-f="fate"><i style="background:#7d5bb8"></i>去向</span>
+      </div>
+      <canvas id="gc"></canvas><div id="gtip"></div>
+      <div class="ghint">拖动节点 · 滚轮缩放 · 拖空白平移 · 双击空白复位 · 点轮次收放它查到的文献 · 点节点看右侧详情</div>
+    </div>
+    <div class="gwrap" style="display:none"><div class="ftools"><button id="f-png">导出 PNG</button><span>四列：轮次 → 文献 → 候选 → 最终去向；点节点看详情</span></div><svg id="g" xmlns="http://www.w3.org/2000/svg"></svg></div>
+  </div>
+  <aside id="panel"></aside>
+</main>
+<section>
+  <h2>候选 × 轮次</h2>
+  <p class="k" style="margin:0 0 8px;font-size:12.5px;color:var(--muted)">每一格：哪篇文献打了这个候选，判定是什么，候选因此怎么变。</p>
+  <div style="overflow:auto"><table id="evo"></table></div>
+</section>
+<section class="glossary">
+  <h2>词汇表</h2>
+  <div class="gcols">
+    <div><h3>顶部数字</h3><dl>
+      <dt>轮次</dt><dd>查一轮、比一轮、改一轮方案，算一轮</dd>
+      <dt>检索式</dt><dd>在数据库里实际敲过的检索条件</dd>
+      <dt>零命中</dt><dd>这些条件下查不到任何在先文献</dd>
+      <dt>看过</dt><dd>打开并逐篇作过判断的文献</dd>
+      <dt>通读全文</dt><dd>其中读完全文的</dd>
+      <dt>逐篇对照</dt><dd>一篇文献比一个技术点，算一次</dd>
+      <dt>提出</dt><dd>考虑过要保护的技术点</dd>
+      <dt>放弃</dt><dd>已有人做过、实测不成立或主动砍掉</dd>
+      <dt>进独立权利要求</dt><dd>最终写进权 1 的核心</dd>
+    </dl></div>
+    <div><h3>判定 · 连线颜色</h3><dl>
+      <dt class="killed">明文记载</dt><dd>文献白纸黑字写了</dd>
+      <dt class="killed">毫无疑义确定</dt><dd>没明写，但必然如此</dd>
+      <dt class="near">部分接近</dt><dd>有相似之处，但不是一回事</dd>
+      <dt class="near">记载不清</dt><dd>拿到的文本不够下结论</dd>
+      <dt class="clear">未记载</dt><dd>文献里没有</dd>
+      <dt class="away">教导相反</dt><dd>文献明确反对这条路，是答辩支点</dd>
+      <dt class="killed">实测推翻</dt><dd>本案实验证明不成立</dd>
+      <dt class="clear">实测支持</dt><dd>本案实验证明成立</dd>
+      <dt class="dim">人为取舍</dt><dd>为篇幅或策略主动决定</dd>
+    </dl></div>
+    <div><h3>影响 · 候选怎么变</h3><dl>
+      <dt>放弃</dt><dd>不再作为发明点</dd>
+      <dt>降为从属</dt><dd>从权 1 退到从属权项</dd>
+      <dt>降为说明书</dt><dd>不进权项，只写进说明书</dd>
+      <dt>升为核心</dt><dd>提到权 1</dd>
+      <dt>保留</dt><dd>维持原判</dd>
+      <dt>收窄</dt><dd>范围缩小以避开</dd>
+      <dt>新增候选</dt><dd>由此想到新的点</dd>
+      <dt>无影响</dt><dd>记录在案，不改变去向</dd>
+    </dl></div>
+  </div>
+</section>
+<footer><span>本输出为撰写辅助，不构成法律意见，不保证授权，不代为提交。</span><span>数据来自《03-检索轨迹台账.md》</span></footer>
+<script id="data" type="application/json">{"case": "极片辊压张力闭环控制", "meta": {"案件": "极片辊压张力闭环控制（虚构演练案）", "最终稿": "02-申请文件.md", "检索记录正文": "本演练把各轮检索记录的对照分析并入 `04-权项证据矩阵与授权七道门.md` 第六节，"}, "stats": {"rounds": 5, "queries": 10, "zero_hit": 2, "docs": 9, "docs_by_kind": {"专利": 6, "论文": 1, "其他": 1, "产品资料": 1}, "fulltext": 8, "blocked": 1, "unresolved": 1, "d_docs": ["P2", "P3", "P4"], "candidates": 9, "fates": {"独权核心": 4, "从属权项": 2, "仅说明书": 1, "待定": 0, "放弃": 2}, "events": 18, "killed": 2, "refuted": 0, "teach_away": 1}, "rounds": [{"id": "R0", "purpose": "读技术说明与调试记录，列出候选并标出哪些是现有做法", "venue": "无（读 00-输入材料/）", "lang": "中", "gaps": "", "record": "00-输入材料/技术说明.md 第三、四节", "queries": []}, {"id": "R1", "purpose": "摸底延展率前馈与带材张力闭环的英文专利与论文", "venue": "Google Patents；Google Scholar", "lang": "英", "gaps": "CNKI；万方", "record": "04-权项证据矩阵与授权七道门.md 六、R1", "queries": [{"round": "R1", "query": "electrode calendering tension feedforward elongation", "venue": "Google Patents", "hits": 26, "note": "多为涂布张力，P2 在其中"}, {"round": "R1", "query": "strip rolling elongation feedforward winder speed tension", "venue": "Google Scholar", "hits": 41, "note": "冷轧带材为主，P5 在其中"}]}, {"id": "R2", "purpose": "中文专利关键词召回，核对辊缝弹跳与极片辊压张力的现有做法", "venue": "国知局公布公告（关键词轮）", "lang": "中", "gaps": "Espacenet 全文", "record": "04-权项证据矩阵与授权七道门.md 六、R2", "queries": [{"round": "R2", "query": "\"极片\" \"辊压\" \"延展率\" \"前馈\"", "venue": "国知局公布公告", "hits": 3, "note": "3 件均为涂布段张力，P1 在其中"}, {"round": "R2", "query": "\"辊缝\" \"轧制力\" \"弹跳\" \"出口厚度\"", "venue": "国知局公布公告", "hits": 14, "note": "冷轧厚度自动控制为主，P3 在其中"}, {"round": "R2", "query": "\"极片辊压\" \"张力\" \"积分冻结\"", "venue": "国知局公布公告", "hits": 0, "note": "C3 的核心组合，中文全文无命中"}]}, {"id": "R3", "purpose": "按 IPC 收口 R2 的召回，并定向查积分分离与厚度自动控制", "venue": "国知局公布公告（--class B21B37,B30B3,H01M4）", "lang": "中", "gaps": "", "record": "04-权项证据矩阵与授权七道门.md 六、R3", "queries": [{"round": "R3", "query": "极片 辊压 张力 前馈 --class B30B3,H01M4", "venue": "国知局公布公告", "hits": 6, "note": "收口后 6 条，P6 在其中"}, {"round": "R3", "query": "辊缝 弹跳补偿 速度前馈 --class B21B37", "venue": "国知局公布公告", "hits": 9, "note": "弹跳补偿都用于厚度环，未见用于速度环"}, {"round": "R3", "query": "\"积分分离\" 张力 控制器 --class B21B37", "venue": "国知局公布公告", "hits": 5, "note": "P4 在其中"}]}, {"id": "R4", "purpose": "补检反对本路线的文献，用现场实测复核候选，并做定稿取舍", "venue": "Google Scholar；产线调试录波；定稿评审会", "lang": "中英", "gaps": "ScienceDirect 正文（付费墙）", "record": "04-权项证据矩阵与授权七道门.md 六、R4", "queries": [{"round": "R4", "query": "roll gap signal noise unsuitable web speed feedforward", "venue": "Google Scholar", "hits": 7, "note": "P7 在其中，是明确反对本路线的一篇"}, {"round": "R4", "query": "\"前馈失效\" \"退回\" \"纯反馈\" \"无扰切换\"", "venue": "国知局公布公告", "hits": 0, "note": "C7 的核心组合，中文全文无命中"}]}], "docs": [{"id": "P1", "n": 1, "number": "CN199701234A", "title": "一种极片辊压机的恒张力闭环控制方法", "kind": "专利", "date": "2025-02-11", "found": "R2", "fulltext": "已读全文", "role": "背景技术", "note": "张力设定按极片牌号查表，收卷速度给定含固定超前比例加张力 PI，无前馈"}, {"id": "P2", "n": 2, "number": "CN199704518A", "title": "一种基于延伸率前馈的带材轧制张力控制方法", "kind": "专利", "date": "2024-09-27", "found": "R1", "fulltext": "已读全文", "role": "D1", "note": "入口与出口两台测厚仪的厚度比作延伸率，前馈修正卷取机速度并叠加张力 PI"}, {"id": "P3", "n": 3, "number": "CN199702087A", "title": "基于辊缝弹跳补偿的轧机出口厚度计算方法", "kind": "专利", "date": "2024-05-16", "found": "R2", "fulltext": "已读全文", "role": "D2", "note": "公开出口厚度等于空载辊缝加轧制力除以机架刚度，用于厚度自动控制"}, {"id": "P4", "n": 4, "number": "CN199706603A", "title": "一种带积分分离的带材张力控制器", "kind": "专利", "date": "2025-06-04", "found": "R3", "fulltext": "已读全文", "role": "D3", "note": "张力偏差绝对值超设定阈值时暂停积分，回到阈值内恢复积分"}, {"id": "P5", "n": 5, "number": "Ferrand & Bao 2021（虚构）", "title": "极片辊压压实密度与纵向延展率的关系", "kind": "论文", "date": "2021", "found": "R1", "fulltext": "已读全文", "role": "背景技术", "note": "给出延展率随涂层减薄率变化的实验曲线，未涉及在线估计与速度给定"}, {"id": "P6", "n": 6, "number": "CN199708810A", "title": "电池极片辊压智能控制平台", "kind": "专利", "date": "2025-08-19", "found": "R3", "fulltext": "被阻断", "role": "线索未解决", "note": "全文下载页返回验证码，只读到摘要，摘要提到多源信号融合的张力优化"}, {"id": "P7", "n": 7, "number": "Sundqvist 2019（虚构）", "title": "Why Roll-Gap Signals Should Not Drive Web Speed（技术通讯）", "kind": "其他", "date": "2019-11", "found": "R4", "fulltext": "已读全文", "role": "答辩材料", "note": "明确主张辊缝信号噪声大、不宜驱动速度前馈，应以出口测厚仪闭环为准"}, {"id": "P8", "n": 8, "number": "某辊压机张力控制器使用手册（虚构 V3.2）", "title": "张力设定值与速度斜坡参数说明", "kind": "产品资料", "date": "2023-10", "found": "R2", "fulltext": "已读全文", "role": "答辩材料", "note": "张力设定值、超前比例、斜坡时间均为固定配置项，不随来料变化"}, {"id": "P9", "n": 9, "number": "CN199703355A", "title": "一种极片分切纠偏装置", "kind": "专利", "date": "2025-01-20", "found": "R2", "fulltext": "已读全文", "role": "无关", "note": "纠偏机构与传感，读后判定与张力给定无关"}], "candidates": [{"id": "C1", "n": 1, "name": "弧长相位对齐", "summary": "按测厚点到辊缝之间累计走过的极片长度判断某段来料何时进入辊缝，再与该时刻的辊缝、轧制力配成同段三元组", "since": "R0", "fate": "独权核心", "landing": "权 1 步骤 S2", "story": ["R0提出：按测厚点到辊缝之间累计走过的极片长度判断某段来料何时进入辊缝，再与该时刻的辊缝、轧制力配成同段三元组", "R1：CN199704518A — 未记载 → 保留。D1 两台测厚仪分列辊缝两侧，同一段带材的两个厚度值天然成对，不存在跨辊缝的传输延迟对齐问题", "R2：CN199703355A — 未记载 → 无影响。纠偏装置只处理横向位置，与纵向速度给定无关，读后判为无关文献", "最终：独权核心，权 1 步骤 S2"]}, {"id": "C2", "n": 2, "name": "弹跳推算出口厚度的延展率估计", "summary": "用空载辊缝设定值加轧制力除以辊系当量刚度得到出口厚度，再乘延展分配系数得到延展率", "since": "R0", "fate": "独权核心", "landing": "权 1 步骤 S3", "story": ["R0提出：用空载辊缝设定值加轧制力除以辊系当量刚度得到出口厚度，再乘延展分配系数得到延展率", "R1：CN199704518A — 部分接近 → 收窄。D1 用入口与出口两台测厚仪的厚度比算延伸率；本案出口无测厚仪，C2 收窄为由空载辊缝与轧制力弹跳量推算出口厚度", "R1：Ferrand & Bao 2021（虚构） — 未记载 → 保留。只给出延展率随减薄率变化的离线实验曲线，未涉及在线估计，也未与速度给定相连", "R2：CN199702087A — 部分接近 → 收窄。弹跳方程已公开并用于厚度自动控制；C2 只能守住把弹跳推算出的出口厚度经延展分配系数转成延展率并驱动收卷速度前馈这一层", "R3：CN199702087A、CN199704518A — 部分接近 → 保留。组合评价：D1 加 D2 可推出用弹跳推算厚度替代出口实测厚度，但两篇都未涉及前馈通道的中间量去干预反馈通道", "R4：本案实验 — 实测支持 → 保留。第 1、2 组录波显示厚度台阶处的张力峰值偏差由 +22 N 降到 +9 N，前馈方向正确", "最终：独权核心，权 1 步骤 S3"]}, {"id": "C3", "n": 3, "name": "前馈变化率触发的张力环积分冻结", "summary": "前馈修正量在滑动窗口内变化超阈时冻结张力环积分器，回落并保持后解冻", "since": "R0", "fate": "独权核心", "landing": "权 1 步骤 S6", "story": ["R0提出：前馈修正量在滑动窗口内变化超阈时冻结张力环积分器，回落并保持后解冻", "R3：CN199706603A — 部分接近 → 收窄。D3 的积分分离由张力偏差本身超阈触发；C3 收窄为由前馈修正量的变化率触发，两者触发时刻和触发依据都不同", "R3：CN199708810A — 记载不清 → 保留。摘要提到多源信号融合的张力优化，全文被验证码挡住，无法确认是否涉及对积分器的干预", "R4：Sundqvist 2019（虚构） — 教导相反 → 升为核心。现有观点明确主张辊缝信号不宜驱动速度前馈；本案不但用辊缝推算前馈，还让前馈的中间量反过来管住反馈积分，这是最强答辩支点", "R4：本案实验 — 实测支持 → 保留。第 5 组显示加冻结后峰值 +6 N、反向偏差消失、恢复 0.5 s，冻结这一步有独立作用", "最终：独权核心，权 1 步骤 S6"]}, {"id": "C4", "n": 4, "name": "由积分增量在线修正辊系当量刚度", "summary": "解冻窗口内积分器单调同号增量超阈时按其大小和方向修正辊系当量刚度估计值", "since": "R0", "fate": "从属权项", "landing": "权 2", "story": ["R0提出：解冻窗口内积分器单调同号增量超阈时按其大小和方向修正辊系当量刚度估计值", "R4：本案实验 — 实测支持 → 降为从属。第 3 组刚度标定未含辊面压扁、只标过一台设备，机理成立但证据面窄，不进独权", "最终：从属权项，权 2"]}, {"id": "C5", "n": 5, "name": "出口测厚仪闭环校正延展率", "summary": "在辊压出口加装测厚仪，用出口实测厚度闭环校正延展率估计", "since": "R0", "fate": "放弃", "landing": "与 D1 的做法重合，且本机型出口无安装空间、极片出辊后回弹使实测值不代表辊缝内厚度", "story": ["R0提出：在辊压出口加装测厚仪，用出口实测厚度闭环校正延展率估计", "R1：CN199704518A — 明文记载 → 放弃。出口测厚仪闭环校正延展率正是 D1 说明书第 5 段的做法", "最终：放弃，与 D1 的做法重合，且本机型出口无安装空间、极片出辊后回弹使实测值不代表辊缝内厚度"]}, {"id": "C6", "n": 6, "name": "按极片规格查表设定张力目标", "summary": "张力设定值按极片牌号与幅宽查表得到", "since": "R0", "fate": "放弃", "landing": "被 P1 整段公开，且本身就是产线现有做法，不解决卷内厚度波动", "story": ["R0提出：张力设定值按极片牌号与幅宽查表得到", "R2：CN199701234A — 明文记载 → 放弃。按牌号与幅宽查表设定张力目标已被整段公开，且本身就是本产线现有做法", "最终：放弃，被 P1 整段公开，且本身就是产线现有做法，不解决卷内厚度波动"]}, {"id": "C7", "n": 7, "name": "按张力裕度分档的斜坡卸载与积分预置", "summary": "退回纯反馈时前馈量按张力裕度决定的斜坡速率卸载，每周期卸载量同步预置入积分器", "since": "R0", "fate": "独权核心", "landing": "权 1 步骤 S8", "story": ["R0提出：退回纯反馈时前馈量按张力裕度决定的斜坡速率卸载，每周期卸载量同步预置入积分器", "R2：某辊压机张力控制器使用手册（虚构 V3.2） — 未记载 → 保留。手册里超前比例与速度斜坡时间都是固定配置项，没有按张力裕度决定卸载速率的做法", "R4：公知常识 — 部分接近 → 收窄。无扰切换是控制领域常识；C7 只能守住卸载速率按张力裕度分档且每周期卸载量同步预置入积分器这一层", "最终：独权核心，权 1 步骤 S8"]}, {"id": "C8", "n": 8, "name": "冻结超时强制解除并降档", "summary": "积分冻结持续超过设定周期数时强制解冻并把控制状态降到降权观察态", "since": "R3", "fate": "从属权项", "landing": "权 4", "story": ["R3提出：积分冻结持续超过设定周期数时强制解冻并把控制状态降到降权观察态", "R3：公知常识 — 未记载 → 新增候选。读 P3 采样保持一节时想到冻结必须有超时兜底，否则信号长期抖动会把积分锁死", "最终：从属权项，权 4"]}, {"id": "C9", "n": 9, "name": "分区变张力控制", "summary": "沿极片长度分区设定不同张力目标，接头段与稳定段用不同设定值", "since": "R0", "fate": "仅说明书", "landing": "具体实施方式实施例三，不写权项", "story": ["R0提出：沿极片长度分区设定不同张力目标，接头段与稳定段用不同设定值", "R4：人为决策 — 人为取舍 → 降为说明书。分区变张力属于另一个发明构思，写进权项会影响单一性，留一段说明书", "最终：仅说明书，具体实施方式实施例三，不写权项"]}], "events": [{"round": "R1", "docs": ["P2"], "pseudo": [], "candidate": "C2", "verdict": "部分接近", "kind": "near", "impact": "收窄", "reason": "D1 用入口与出口两台测厚仪的厚度比算延伸率；本案出口无测厚仪，C2 收窄为由空载辊缝与轧制力弹跳量推算出口厚度", "source": "04 六、R1-B2"}, {"round": "R1", "docs": ["P2"], "pseudo": [], "candidate": "C5", "verdict": "明文记载", "kind": "killed", "impact": "放弃", "reason": "出口测厚仪闭环校正延展率正是 D1 说明书第 5 段的做法", "source": "04 六、R1-B2"}, {"round": "R1", "docs": ["P2"], "pseudo": [], "candidate": "C1", "verdict": "未记载", "kind": "clear", "impact": "保留", "reason": "D1 两台测厚仪分列辊缝两侧，同一段带材的两个厚度值天然成对，不存在跨辊缝的传输延迟对齐问题", "source": "04 六、R1-B3"}, {"round": "R1", "docs": ["P5"], "pseudo": [], "candidate": "C2", "verdict": "未记载", "kind": "clear", "impact": "保留", "reason": "只给出延展率随减薄率变化的离线实验曲线，未涉及在线估计，也未与速度给定相连", "source": "04 六、R1-C1"}, {"round": "R2", "docs": ["P1"], "pseudo": [], "candidate": "C6", "verdict": "明文记载", "kind": "killed", "impact": "放弃", "reason": "按牌号与幅宽查表设定张力目标已被整段公开，且本身就是本产线现有做法", "source": "04 六、R2-A1"}, {"round": "R2", "docs": ["P3"], "pseudo": [], "candidate": "C2", "verdict": "部分接近", "kind": "near", "impact": "收窄", "reason": "弹跳方程已公开并用于厚度自动控制；C2 只能守住把弹跳推算出的出口厚度经延展分配系数转成延展率并驱动收卷速度前馈这一层", "source": "04 六、R2-A3"}, {"round": "R2", "docs": ["P8"], "pseudo": [], "candidate": "C7", "verdict": "未记载", "kind": "clear", "impact": "保留", "reason": "手册里超前比例与速度斜坡时间都是固定配置项，没有按张力裕度决定卸载速率的做法", "source": "04 六、R2-D2"}, {"round": "R2", "docs": ["P9"], "pseudo": [], "candidate": "C1", "verdict": "未记载", "kind": "clear", "impact": "无影响", "reason": "纠偏装置只处理横向位置，与纵向速度给定无关，读后判为无关文献", "source": "04 六、R2-A5"}, {"round": "R3", "docs": ["P4"], "pseudo": [], "candidate": "C3", "verdict": "部分接近", "kind": "near", "impact": "收窄", "reason": "D3 的积分分离由张力偏差本身超阈触发；C3 收窄为由前馈修正量的变化率触发，两者触发时刻和触发依据都不同", "source": "04 六、R3-B1"}, {"round": "R3", "docs": ["P3", "P2"], "pseudo": [], "candidate": "C2", "verdict": "部分接近", "kind": "near", "impact": "保留", "reason": "组合评价：D1 加 D2 可推出用弹跳推算厚度替代出口实测厚度，但两篇都未涉及前馈通道的中间量去干预反馈通道", "source": "04 六、R3-B4"}, {"round": "R3", "docs": ["P6"], "pseudo": [], "candidate": "C3", "verdict": "记载不清", "kind": "near", "impact": "保留", "reason": "摘要提到多源信号融合的张力优化，全文被验证码挡住，无法确认是否涉及对积分器的干预", "source": "04 六、R3-C2"}, {"round": "R3", "docs": [], "pseudo": ["CK"], "candidate": "C8", "verdict": "未记载", "kind": "clear", "impact": "新增候选", "reason": "读 P3 采样保持一节时想到冻结必须有超时兜底，否则信号长期抖动会把积分锁死", "source": "04 六、R3-B3"}, {"round": "R4", "docs": ["P7"], "pseudo": [], "candidate": "C3", "verdict": "教导相反", "kind": "away", "impact": "升为核心", "reason": "现有观点明确主张辊缝信号不宜驱动速度前馈；本案不但用辊缝推算前馈，还让前馈的中间量反过来管住反馈积分，这是最强答辩支点", "source": "04 六、R4-A1"}, {"round": "R4", "docs": [], "pseudo": ["CK"], "candidate": "C7", "verdict": "部分接近", "kind": "near", "impact": "收窄", "reason": "无扰切换是控制领域常识；C7 只能守住卸载速率按张力裕度分档且每周期卸载量同步预置入积分器这一层", "source": "04 六、R4-B2"}, {"round": "R4", "docs": [], "pseudo": ["EX"], "candidate": "C2", "verdict": "实测支持", "kind": "clear", "impact": "保留", "reason": "第 1、2 组录波显示厚度台阶处的张力峰值偏差由 +22 N 降到 +9 N，前馈方向正确", "source": "00-输入材料/调试记录.md 第 1、2 组"}, {"round": "R4", "docs": [], "pseudo": ["EX"], "candidate": "C3", "verdict": "实测支持", "kind": "clear", "impact": "保留", "reason": "第 5 组显示加冻结后峰值 +6 N、反向偏差消失、恢复 0.5 s，冻结这一步有独立作用", "source": "00-输入材料/调试记录.md 第 5 组"}, {"round": "R4", "docs": [], "pseudo": ["EX"], "candidate": "C4", "verdict": "实测支持", "kind": "clear", "impact": "降为从属", "reason": "第 3 组刚度标定未含辊面压扁、只标过一台设备，机理成立但证据面窄，不进独权", "source": "00-输入材料/调试记录.md 第 3 组"}, {"round": "R4", "docs": [], "pseudo": ["DC"], "candidate": "C9", "verdict": "人为取舍", "kind": "decision", "impact": "降为说明书", "reason": "分区变张力属于另一个发明构思，写进权项会影响单一性，留一段说明书", "source": "04 六、R4-B2"}], "pseudo": [{"code": "CK", "label": "公知常识", "desc": "靠常识或原理打的判定", "round": "R3"}, {"code": "EX", "label": "本案实验", "desc": "本案实测结果推翻或支持了候选", "round": "R4"}, {"code": "DC", "label": "人为决策", "desc": "用户或代理师基于篇幅、策略的取舍", "round": "R4"}], "fate_order": ["独权核心", "从属权项", "仅说明书", "待定", "放弃"], "fate_colors": {"独权核心": "#2f7fc1", "从属权项": "#7d5bb8", "仅说明书": "#c9a227", "待定": "#e0962e", "放弃": "#d94a3d"}, "evolution": [["候选", "R0", "R1", "R2", "R3", "R4", "最终去向"], ["C1 弧长相位对齐", "提出", "P2 未记载→保留", "P9 未记载→无影响", "", "", "独权核心（权 1 步骤 S2）"], ["C2 弹跳推算出口厚度的延展率估计", "提出", "P2 部分接近→收窄；P5 未记载→保留", "P3 部分接近→收窄", "P3+P2 部分接近→保留", "本案实验 实测支持→保留", "独权核心（权 1 步骤 S3）"], ["C3 前馈变化率触发的张力环积分冻结", "提出", "", "", "P4 部分接近→收窄；P6 记载不清→保留", "P7 教导相反→升为核心；本案实验 实测支持→保留", "独权核心（权 1 步骤 S6）"], ["C4 由积分增量在线修正辊系当量刚度", "提出", "", "", "", "本案实验 实测支持→降为从属", "从属权项（权 2）"], ["C5 出口测厚仪闭环校正延展率", "提出", "P2 明文记载→放弃", "", "", "", "放弃（与 D1 的做法重合，且本机型出口无安装空间、极片出辊后回弹使实测值不代表辊缝内厚度）"], ["C6 按极片规格查表设定张力目标", "提出", "", "P1 明文记载→放弃", "", "", "放弃（被 P1 整段公开，且本身就是产线现有做法，不解决卷内厚度波动）"], ["C7 按张力裕度分档的斜坡卸载与积分预置", "提出", "", "P8 未记载→保留", "", "公知常识 部分接近→收窄", "独权核心（权 1 步骤 S8）"], ["C8 冻结超时强制解除并降档", "", "", "", "公知常识 未记载→新增候选", "", "从属权项（权 4）"], ["C9 分区变张力控制", "提出", "", "", "", "人为决策 人为取舍→降为说明书", "仅说明书（具体实施方式实施例三，不写权项）"]], "gaps": ["R1 未覆盖：CNKI；万方", "R2 未覆盖：Espacenet 全文", "R4 未覆盖：ScienceDirect 正文（付费墙）", "线索未解决：P6 CN199708810A 电池极片辊压智能控制平台（被阻断）—全文下载页返回验证码，只读到摘要，摘要提到多源信号融合的张力优化"]}</script>
+<script>
+(function(){
+const D = JSON.parse(document.getElementById('data').textContent);
+const NS = 'http://www.w3.org/2000/svg';
+const COL = {round:36, doc:244, common:514, cand:664, fate:970};
+const W = {round:190, doc:260, common:140, cand:280, fate:170};
+const H = {round:56, doc:60, common:52, cand:66, fate:56};
+const PITCH = 84, TOP = 40;
+const VC = {killed:'#d94a3d', near:'#e0962e', clear:'#3f9d5a', away:'#2f7fc1', decision:'#8a8f98'};
+const FC = D.fate_colors;
+const rIndex = {}; D.rounds.forEach((r,i)=>rIndex[r.id]=i);
+
+// 摘要条
+document.getElementById('sub').innerHTML = Object.entries(D.meta).map(([k,v])=>'<span><b style="font-weight:500;color:var(--ink)">'+esc0(k)+'</b>　'+esc0(v)+'</span>').join('');
+function esc0(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+const S = D.stats, tiles = document.getElementById('tiles');
+[['检索','#e6c04a',[[S.rounds,'轮次'],[S.queries,'检索式'],[S.zero_hit,'零命中']]],
+ ['文献','#f0a35e',[[S.docs,'看过'],[S.fulltext,'通读全文'],[S.events,'逐篇对照']]],
+ ['候选发明点','#b48cf2',[[S.candidates,'提出'],[S.fates['放弃'],'放弃'],[S.fates['独权核心'],'进独立权利要求']]]]
+ .forEach(([cap,col,items])=>{const g=document.createElement('div');g.className='sg';g.innerHTML='<div class="cap"><i style="background:'+col+'"></i>'+cap+'</div><div class="row">'+items.map(([n,l])=>'<div class="st"><b>'+n+'</b><span>'+l+'</span></div>').join('')+'</div>';tiles.appendChild(g);});
+
+// 节点
+const nodes = [], byId = {};
+function push(n){nodes.push(n);byId[n.key]=n;}
+D.rounds.forEach((r,i)=>push({key:'R:'+r.id,kind:'round',row:i,intro:i,l1:r.id,l2:r.purpose,data:r}));
+const docs = D.docs.slice().sort((a,b)=>(rIndex[a.found]||0)-(rIndex[b.found]||0)||a.n-b.n);
+docs.forEach((d,i)=>push({key:'P:'+d.id,kind:'doc',row:i,intro:rIndex[d.found]||0,l1:d.id+'  '+d.number,l2:d.title,data:d}));
+D.pseudo.forEach((p,j)=>push({key:p.code,kind:'common',row:docs.length+j,intro:rIndex[p.round]||0,l1:p.label,l2:p.desc,data:p}));
+const cands = D.candidates.slice().sort((a,b)=>(rIndex[a.since]||0)-(rIndex[b.since]||0)||a.n-b.n);
+cands.forEach((c,i)=>push({key:'C:'+c.id,kind:'cand',row:i,intro:rIndex[c.since]||0,l1:c.id+'  '+c.name,l2:'→ '+c.fate+(c.landing?'：'+c.landing:''),data:c}));
+const fates = D.fate_order.filter(f=>cands.some(c=>c.fate===f));
+fates.forEach((f,i)=>push({key:'F:'+f,kind:'fate',row:i,intro:D.rounds.length-1,l1:f,l2:cands.filter(c=>c.fate===f).map(c=>c.id).join('、'),data:{fate:f}}));
+nodes.forEach(n=>{n.x=COL[n.kind];n.w=W[n.kind];n.h=H[n.kind];});
+
+// 边
+const edges = [];
+docs.forEach(d=>{if(rIndex[d.found]!==undefined)edges.push({a:'R:'+d.found,b:'P:'+d.id,cls:'found',intro:rIndex[d.found],label:''});});
+D.pseudo.forEach(p=>edges.push({a:'R:'+p.round,b:p.code,cls:'found',intro:rIndex[p.round],label:''}));
+D.events.forEach(e=>{const srcs=e.docs.map(p=>'P:'+p).concat(e.pseudo);
+  srcs.forEach(s=>edges.push({a:s,b:'C:'+e.candidate,cls:'verdict',color:VC[e.kind],intro:rIndex[e.round],label:e.round+' '+e.verdict+'→'+e.impact,ev:e}));});
+cands.forEach(c=>edges.push({a:'C:'+c.id,b:'F:'+c.fate,cls:'fate',color:FC[c.fate],intro:D.rounds.length-1,label:c.landing}));
+
+// 排版：文献列按轮次顺序排；候选贴着打它的文献（取相连文献的平均纵坐标）、去向贴着它的候选、
+// 轮次贴着它检出的文献，重叠的往下推。几十篇文献时线才不会全挤成一团。
+const GAP = 18;
+function neigh(n, kinds){const ys=[];edges.forEach(e=>{const o=e.a===n.key?byId[e.b]:(e.b===n.key?byId[e.a]:null);if(o&&kinds.includes(o.kind)&&o.y!=null)ys.push(o.y+o.h/2);});return ys.length?ys.reduce((a,b)=>a+b,0)/ys.length:null;}
+function placeSeq(list){let y=TOP;list.forEach(n=>{n.y=(n.bary==null)?y:Math.max(y,n.bary-n.h/2);y=n.y+n.h+GAP;});}
+function placeFree(n, col){let y=Math.max(TOP,(n.bary==null?TOP:n.bary-n.h/2));for(let guard=0;guard<500;guard++){const hit=col.find(o=>o!==n&&o.y!=null&&!(y+n.h+GAP<=o.y||o.y+o.h+GAP<=y));if(!hit)break;y=hit.y+hit.h+GAP;}n.y=y;}
+const colDocs=nodes.filter(n=>n.kind==='doc'), colPseudo=nodes.filter(n=>n.kind==='common'), colR=nodes.filter(n=>n.kind==='round'), colC=nodes.filter(n=>n.kind==='cand'), colF=nodes.filter(n=>n.kind==='fate');
+nodes.forEach(n=>{n.y=null;n.bary=null;});
+placeSeq(colDocs);
+const cA=colC.filter(n=>(n.bary=neigh(n,['doc']))!=null).sort((a,b)=>a.bary-b.bary||a.row-b.row);
+placeSeq(cA);
+colPseudo.forEach(n=>{n.bary=neigh(n,['cand']);placeFree(n,colPseudo);});
+colC.filter(n=>n.y==null).sort((a,b)=>a.row-b.row).forEach(n=>{n.bary=neigh(n,['common']);placeFree(n,colC);});
+colR.forEach(n=>n.bary=neigh(n,['doc'])); placeSeq(colR);
+colF.forEach(n=>n.bary=neigh(n,['cand'])); placeSeq(colF);
+// 画
+const svg = document.getElementById('g');
+const bottom = Math.max(...nodes.map(n=>n.y+n.h));
+svg.setAttribute('width', COL.fate+W.fate+30); svg.setAttribute('height', bottom + 40);
+function el(t,attrs,parent){const e=document.createElementNS(NS,t);for(const k in attrs)e.setAttribute(k,attrs[k]);(parent||svg).appendChild(e);return e;}
+[['轮次',COL.round],['查到的文献',COL.doc],['候选发明点',COL.cand],['最终去向',COL.fate]].forEach(([t,x])=>{const c=el('text',{x:x,y:22,'class':'col'});c.textContent=t;});
+function wrap(s, maxw){s=s||'';let out=[],cur='',w=0;const cw=ch=>ch.charCodeAt(0)>255?12:6.6;
+  for(let i=0;i<s.length;i++){const ch=s[i];if(w+cw(ch)>maxw){const sp=cur.lastIndexOf(' ');
+      if(sp>maxw/6.6*0.5&&ch.charCodeAt(0)<256){out.push(cur.slice(0,sp));cur=cur.slice(sp+1);w=0;for(const c of cur)w+=cw(c);}else{out.push(cur);cur='';w=0;}
+      if(out.length===2){cur='';break;}}
+    cur+=ch;w+=cw(ch);}
+  if(cur&&out.length<2)out.push(cur);
+  if(out.length===2&&s.replace(/ /g,'').length>out.join('').replace(/ /g,'').length)out[1]=out[1].slice(0,-1)+'…';return out;}
+const eg = el('g',{}), ng = el('g',{});
+edges.forEach(e=>{const A=byId[e.a],B=byId[e.b];if(!A||!B)return;const x1=A.x+A.w,y1=A.y+A.h/2,x2=B.x,y2=B.y+B.h/2,mx=(x1+x2)/2;
+  const g=el('g',{'class':'edgeg'},eg);e.g=g;
+  el('path',{d:`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`,'class':'edge '+e.cls,stroke:e.color||''},g);
+  if(e.label){const t=el('text',{x:mx,y:(y1+y2)/2-4,'class':'edgelabel','text-anchor':'middle'},g);t.textContent=e.label;}});
+nodes.forEach(n=>{const g=el('g',{'class':'node '+n.kind,transform:`translate(${n.x},${n.y})`},ng);n.g=g;
+  el('rect',{width:n.w,height:n.h,rx:7},g);
+  const t1=el('text',{x:9,y:19,'class':'id'},g);t1.textContent=wrap(n.l1,n.w-18)[0]||'';
+  const ls=wrap(n.l2,n.w-18);ls.forEach((s,i)=>{const t=el('text',{x:9,y:35+i*14},g);t.textContent=s;});
+  const ttl=el('title',{},g);ttl.textContent=n.l1+'\n'+(n.l2||'');
+  g.addEventListener('click',ev=>{ev.stopPropagation();select(n.key);});});
+svg.addEventListener('click',()=>select(null));
+
+// 回放 + 高亮
+let upto = D.rounds.length-1, selected = null;
+function apply(){
+  nodes.forEach(n=>{n.g.classList.toggle('ghost', n.intro>upto);});
+  edges.forEach(e=>{if(!e.g)return;e.g.classList.toggle('ghost', e.intro>upto);});
+  const cur=document.getElementById('cur');
+  cur.textContent = upto>=D.rounds.length-1 ? '全部 '+D.rounds.length+' 轮' : '到 '+D.rounds[upto].id+' 为止';
+  if(selected){const keep=new Set([selected]);edges.forEach(e=>{if(e.a===selected||e.b===selected){keep.add(e.a);keep.add(e.b);}});
+    nodes.forEach(n=>{n.g.classList.toggle('dim',!keep.has(n.key));n.g.classList.toggle('lit',keep.has(n.key));});
+    edges.forEach(e=>{if(!e.g)return;const on=e.a===selected||e.b===selected;e.g.classList.toggle('dim',!on);e.g.classList.toggle('lit',on);});
+  } else {nodes.forEach(n=>{n.g.classList.remove('dim','lit');});edges.forEach(e=>{if(e.g){e.g.classList.remove('dim','lit');}});}
+  GV.refresh();
+}
+function select(key){selected=key;apply();panel(key);}
+document.getElementById('prev').onclick=()=>{upto=Math.max(0,upto-1);apply();};
+document.getElementById('next').onclick=()=>{upto=Math.min(D.rounds.length-1,upto+1);apply();};
+document.getElementById('all').onclick=()=>{upto=D.rounds.length-1;select(null);};
+
+// 右侧面板
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function tag(t,color){return '<span class="tag" style="background:'+color+'">'+esc(t)+'</span>';}
+function docName(p){const d=D.docs.find(x=>x.id===p);return d?(d.number||d.id):p;}
+const ROLE_SHOW={D1:'最接近的现有技术（D1）',D2:'第二对比文件（D2）',背景技术:'写进背景技术',答辩材料:'留作答辩材料'};
+function roleShow(r){if(!r)return '';if(ROLE_SHOW[r])return ROLE_SHOW[r];if(/^D\d+$/.test(r))return '对比文件 '+r;return '';}
+const FT_SHOW={已读全文:'通读全文',仅摘要:'读了摘要',未取得:'未取得全文',被阻断:'未取得全文'};
+function ftShow(f){return FT_SHOW[f]||f||'';}
+const PL={CK:'公知常识',EX:'本案实验',DC:'人为决策'};
+function evLine(e,opts){opts=opts||{};let who=e.docs.map(docName).concat(e.pseudo.map(x=>PL[x])).join('、');let s='<li><b>'+esc(e.round)+'</b>';
+  if(!opts.noDoc)s+=' · '+esc(who);if(!opts.noCand)s+=' · '+esc(e.candidate);
+  s+='：<span class="'+e.kind+'">'+esc(e.verdict)+' → '+esc(e.impact)+'</span>。'+esc(e.reason)+(e.source?'<span class="k">（'+esc(e.source)+'）</span>':'')+'</li>';return s;}
+
+// ===== 图例（地图图例式，默认显示在右侧；两个视图各一套）=====
+let curView='graph';
+function flowLegendHTML(){
+  const box=(fill,stroke,dash)=>'<svg width="30" height="22"><rect x="3" y="4" width="24" height="14" rx="4" fill="'+fill+'" stroke="'+stroke+'" stroke-width="1.5" '+(dash?'stroke-dasharray="4 3"':'')+'/></svg>';
+  const line=(c,w)=>'<svg width="30" height="22"><path d="M2 11 L28 11" stroke="'+c+'" stroke-width="'+w+'" stroke-linecap="round"/></svg>';
+  const row=(sw,t,sub)=>sw+'<span class="n">'+t+(sub?'<small>'+sub+'</small>':'')+'</span>';
+  const key=(k,t)=>'<span class="lgk">'+k+'</span><span class="n">'+t+'</span>';
+  return '<div class="lg">'
+   +'<div class="lgh" style="grid-column:1/-1">四列，从左到右</div>'
+   +row(box('#fff7d6','#c9a227'),'检索轮次','按时间从上到下')
+   +row(box('#fff1e3','#e0962e'),'查到的文献','按检出轮次排')
+   +row(box('#f1ebfa','#7d5bb8'),'候选发明点','贴着打它的文献放')
+   +row(box('#e8f1fa','#2f7fc1'),'最终去向','独权核心 · 从属权项 · 仅说明书 · 放弃')
+   +row(box('#f1f1f1','#9aa3ad',true),'公知常识 · 本案实验 · 人为决策')
+   +'<div class="lgh" style="grid-column:1/-1">连线 ＝ 判定</div>'
+   +row(line('#d94a3d',2.5),'被打掉','明文记载 · 毫无疑义确定 · 实测推翻')
+   +row(line('#e0962e',2.5),'部分接近','含记载不清')
+   +row(line('#3f9d5a',2.5),'未记载','含实测支持')
+   +row(line('#2f7fc1',2.5),'教导相反','答辩支点')
+   +row(line('#8a8f98',2.5),'人为取舍')
+   +row(line('#b9b2a3',1),'检出','轮次 → 文献')
+   +'<div class="lgh" style="grid-column:1/-1">操作</div>'
+   +key('点','节点 → 右侧看来龙去脉，连线上显示判定')
+   +key('◀▶','顶部按钮按轮次回放，没到的轮次变淡')
+   +key('PNG','导出整张图，适合打印')
+   +'</div>';
+}
+function legendHTML(){ if(curView==='flow') return flowLegendHTML();
+  const dot=(c,r,t,tc)=>'<svg width="30" height="24"><circle cx="15" cy="12" r="'+r+'" fill="'+c+'"/>'+(t?'<text x="15" y="12.5" text-anchor="middle" dominant-baseline="middle" font-size="'+(r>8?9:7)+'" font-weight="700" fill="'+(tc||'#fff')+'">'+t+'</text>':'')+'</svg>';
+  const ring=(c,rc)=>'<svg width="30" height="24"><circle cx="15" cy="12" r="7.5" fill="'+c+'"/><circle cx="15" cy="12" r="10" fill="none" stroke="'+rc+'" stroke-width="2.5"/><text x="15" y="12.5" text-anchor="middle" dominant-baseline="middle" font-size="8" font-weight="700" fill="#fff">C</text></svg>';
+  const pillsw=(bg,fg,dash)=>'<svg width="30" height="24"><rect x="2" y="5" width="26" height="14" rx="7" fill="'+bg+'" stroke="'+(dash?'#9aa3ad':'none')+'" '+(dash?'stroke-dasharray="3 2"':'')+'/><text x="15" y="12.5" text-anchor="middle" dominant-baseline="middle" font-size="7.5" font-weight="700" fill="'+fg+'">去向</text></svg>';
+  const line=(c,w,dash)=>'<svg width="30" height="22"><path d="M2 11 L28 11" stroke="'+c+'" stroke-width="'+w+'" '+(dash?'stroke-dasharray="5 3"':'')+' stroke-linecap="round"/></svg>';
+  const row=(sw,t,sub)=>sw+'<span class="n">'+t+(sub?'<small>'+sub+'</small>':'')+'</span>';
+  const key=(k,t)=>'<span class="lgk">'+k+'</span><span class="n">'+t+'</span>';
+  return '<div class="lg">'
+   +'<div class="lgh" style="grid-column:1/-1">节点</div>'
+   +row(dot('#e6c04a',10,'R','#3a2f05'),'检索轮次 R','越大，这轮看的文献越多；角标 ＋／− 收放')
+   +row(dot('#f0a35e',7.5,'P','#3a2a10'),'文献 P','越大，打过的候选越多')
+   +row(ring('#b48cf2','#2f7fc1'),'候选发明点 C','外圈颜色＝最终去向')
+   +row(pillsw('#2f7fc1','#fff'),'最终去向','蓝 独权核心 · 紫 从属权项 · 黄 仅说明书 · 红 放弃')
+   +row(pillsw('#e9e6df','#333',true),'公知常识 · 本案实验 · 人为决策')
+   +'<div class="lgh" style="grid-column:1/-1">候选外圈 ＝ 最终去向</div>'
+   +row(ring('#b48cf2','#2f7fc1'),'独权核心')
+   +row(ring('#b48cf2','#7d5bb8'),'从属权项')
+   +row(ring('#b48cf2','#c9a227'),'仅说明书')
+   +row(ring('#b48cf2','#d94a3d'),'放弃')
+   +'<div class="lgh" style="grid-column:1/-1">连线 ＝ 判定</div>'
+   +row(line('#d94a3d',2.5),'被打掉','明文记载 · 毫无疑义确定 · 实测推翻')
+   +row(line('#e0962e',2.5),'部分接近','含记载不清')
+   +row(line('#3f9d5a',2.5),'未记载','含实测支持')
+   +row(line('#2f7fc1',2.5),'教导相反','答辩支点')
+   +row(line('#8a8f98',2.5),'人为取舍')
+   +row(line('#8a8f98',1),'检出','轮次 → 文献')
+   +row(line('#e0962e',3,true),'合并打击 ×n','轮次收起后')
+   +'<div class="lgh" style="grid-column:1/-1">操作</div>'
+   +key('点','节点 → 右侧看来龙去脉')
+   +key('＋／−','轮次 → 收起／展开文献')
+   +key('拖','节点可拖，拖空白平移')
+   +key('滚','缩放；双击空白复位')
+   +key('◀▶','顶部按钮按轮次回放')
+   +key('PNG','工具栏导出 2 倍清晰度图片')
+   +'</div>';
+}
+function panel(key){const P=document.getElementById('panel');if(!key){P.innerHTML='<h2>图例</h2>'+legendHTML();return;}
+  const n=byId[key];let h='<button class="back" id="backbtn">‹ 图例</button>';
+  if(n.kind==='cand'){const c=n.data;h='<h2>'+esc(c.id+' '+c.name)+'</h2>'+tag(c.fate,FC[c.fate])+(c.landing?'<span class="k">'+esc(c.landing)+'</span>':'')+'<p>'+esc(c.summary)+'</p><div class="k">来龙去脉</div><ol>'+c.story.map(s=>'<li>'+esc(s)+'</li>').join('')+'</ol>';}
+  else if(n.kind==='doc'){const d=n.data;h='<h2>'+esc(d.id+' '+d.number)+'</h2><p>'+esc(d.title)+'</p><p><span class="k">类型</span> '+esc(d.kind)+'　<span class="k">公开日</span> '+esc(d.date)+'<br><span class="k">检出于</span> '+esc(d.found)+'　<span class="k">阅读</span> '+esc(ftShow(d.fulltext))+(roleShow(d.role)?'<br><span class="k">在本案中</span> <b>'+esc(roleShow(d.role))+'</b>':'')+(d.note?'<br><span class="k">备注</span> '+esc(d.note):'')+'</p>';
+    const evs=D.events.filter(e=>e.docs.includes(d.id));if(evs.length)h+='<div class="k">打过哪些候选</div><ol>'+evs.map(e=>evLine(e,{noDoc:true})).join('')+'</ol>';}
+  else if(n.kind==='common'){const evs=D.events.filter(e=>e.pseudo.includes(n.key));h='<h2>'+esc(n.l1)+'</h2><p class="k">'+esc(n.l2)+'</p><ol>'+evs.map(e=>evLine(e,{noDoc:true})).join('')+'</ol>';}
+  else if(n.kind==='round'){const r=n.data;h='<h2>'+esc(r.id)+'</h2><p>'+esc(r.purpose)+'</p><p><span class="k">入口</span> '+esc(r.venue)+'<br><span class="k">语言</span> '+esc(r.lang)+(r.gaps?'<br><span class="k">未覆盖的库</span> '+esc(r.gaps):'')+'<br><span class="k">详细记录</span> '+esc(r.record)+'</p>';
+    if(r.queries.length)h+='<div class="k">查询式（'+r.queries.length+'）</div><ol>'+r.queries.map(q=>'<li>'+esc(q.query)+' <span class="k">'+esc(q.venue)+'</span> → <b>'+(q.hits===null?'—':q.hits)+'</b>'+(q.note?' <span class="k">'+esc(q.note)+'</span>':'')+'</li>').join('')+'</ol>';
+    const evs=D.events.filter(e=>e.round===r.id);if(evs.length)h+='<div class="k">本轮对照</div><ol>'+evs.map(e=>evLine(e)).join('')+'</ol>';}
+  else if(n.kind==='fate'){const f=n.data.fate;h='<h2>'+esc(f)+'</h2><ol>'+cands.filter(c=>c.fate===f).map(c=>'<li><b>'+esc(c.id+' '+c.name)+'</b>'+(c.landing?'：'+esc(c.landing):'')+'</li>').join('')+'</ol>';}
+  P.innerHTML=h;const bb=document.getElementById('backbtn');if(bb)bb.onclick=()=>select(null);}
+
+
+// ===== 图谱视图：力导向、可拖拽缩放、轮次可收放 =====
+const GV=(function(){
+  const wrap=document.getElementById('gview'), cv=document.getElementById('gc'), tip=document.getElementById('gtip');
+  const ctxRef={ctx:cv.getContext('2d')};
+  const KC={round:'#e6c04a',doc:'#f0a35e',common:'#9aa3ad',cand:'#b48cf2',fate:'#5aa9e6'};
+  const TX={round:0.09,doc:0.34,common:0.50,cand:0.67,fate:0.93};
+  let W=0,H=0,dpr=1,zoom=1,panX=0,panY=0,alpha=1,raf=null,dragging=null,dragMoved=false,panning=null,hover=null,dark=true,seeded=false;
+  const expanded=new Set(D.rounds.map(r=>r.id));
+  const filter={killed:true,near:true,clear:true,away:true,decision:true,found:true,fate:true};
+  function radius(n){
+    if(n.kind==='round'){const c=D.docs.filter(d=>d.found===n.data.id).length;return 16+Math.min(12,c)*0.6+Math.min(10,n.data.queries.length)*0.3;}
+    if(n.kind==='doc')return 9+Math.min(6,D.events.filter(e=>e.docs.includes(n.data.id)).length)*1.1;
+    if(n.kind==='cand')return 13+Math.min(12,D.events.filter(e=>e.candidate===n.data.id).length)*0.8;
+    if(n.kind==='fate')return 13; return 12;}
+  // 胶囊形节点（最终去向、公知常识/实验/决策）：文字写在里面，半径只用来算碰撞
+  function pillW(g){return Math.max(g.r*2, (g.kind==='fate'?g.n.data.fate:g.n.l1).length*12+22);}
+  const gn=nodes.map(n=>({n,key:n.key,kind:n.kind,x:0,y:0,vx:0,vy:0,r:radius(n),fixed:false}));
+  const gById={};gn.forEach(g=>gById[g.key]=g);
+  function seed(){gn.forEach(g=>{g.x=W*TX[g.kind]+(Math.random()-0.5)*90;g.y=H*0.5+(Math.random()-0.5)*H*0.85;g.vx=g.vy=0;g.fixed=false;});
+    // 文献先靠着自己的轮次
+    gn.forEach(g=>{if(g.kind==='doc'){const R=gById['R:'+g.n.data.found];if(R){g.x=R.x+70+(Math.random()-0.5)*60;g.y=R.y+(Math.random()-0.5)*120;}}});
+    alpha=1;seeded=true;}
+  function visible(g){const n=g.n;if(n.intro>upto)return false;if(n.kind==='doc'&&!expanded.has(n.data.found))return false;return true;}
+  function activeEdges(){
+    const out=[],agg={};
+    edges.forEach(e=>{if(e.intro>upto)return;const A=gById[e.a],B=gById[e.b];if(!A||!B)return;const va=visible(A),vb=visible(B);
+      if(e.cls==='verdict'){if(!filter[e.ev.kind])return;
+        if(va&&vb){out.push({a:A,b:B,color:e.color,w:1.4,kind:e.ev.kind,label:e.label});}
+        else if(!va&&A.kind==='doc'&&vb){const R=gById['R:'+A.n.data.found];if(!R||!visible(R))return;const k=R.key+'|'+B.key;const a=(agg[k]=agg[k]||{a:R,b:B,kinds:{},count:0});a.kinds[e.ev.kind]=(a.kinds[e.ev.kind]||0)+1;a.count++;}}
+      else if(e.cls==='found'){if(!filter.found)return;if(va&&vb)out.push({a:A,b:B,color:dark?'#3d4760':'#cfc9bb',w:1,kind:'found'});}
+      else if(e.cls==='fate'){if(!filter.fate)return;if(va&&vb)out.push({a:A,b:B,color:e.color,w:2,kind:'fate',label:e.label});}});
+    const order=['killed','away','near','clear','decision'];
+    Object.values(agg).forEach(a=>{const k=order.find(x=>a.kinds[x])||'clear';out.push({a:a.a,b:a.b,color:VC[k],w:1+Math.min(4,a.count*0.5),kind:k,agg:a.count});});
+    return out;}
+  function physics(vis,es){const k=alpha;const sparse=Math.max(1,Math.min(2.6,70/Math.max(vis.length,1)));
+    vis.forEach(g=>{if(g.fixed)return;g.vx+=(W*TX[g.kind]-g.x)*0.035*k;g.vy+=(H/2-g.y)*0.0015*k;});
+    for(let i=0;i<vis.length;i++){const a=vis[i];for(let j=i+1;j<vis.length;j++){const b=vis[j];let dx=b.x-a.x,dy=b.y-a.y,d2=dx*dx+dy*dy;if(d2<1){dx=Math.random()-0.5;dy=Math.random()-0.5;d2=1;}const d=Math.sqrt(d2);const both=a.kind!=='doc'&&b.kind!=='doc';const ra=(a.kind==='fate'||a.kind==='common')?pillW(a)/2:a.r,rb=(b.kind==='fate'||b.kind==='common')?pillW(b)/2:b.r;const min=ra+rb+(both?70:16);const wgt=(a.kind==='doc'?1:2.2)*(b.kind==='doc'?1:2.2);let f=1500*sparse*wgt*k/d2;if(d<min)f+=(min-d)*(both?0.5:0.3);const fx=dx/d*f,fy=dy/d*f;if(!a.fixed){a.vx-=fx;a.vy-=fy;}if(!b.fixed){b.vx+=fx;b.vy+=fy;}}}
+    es.forEach(e=>{const a=e.a,b=e.b,dx=b.x-a.x,dy=b.y-a.y,d=Math.sqrt(dx*dx+dy*dy)||1;const rest=(e.kind==='found'?75:(e.kind==='fate'?130:170))*Math.sqrt(sparse);const f=(d-rest)*0.02*k,fx=dx/d*f,fy=dy/d*f;if(!a.fixed){a.vx+=fx;a.vy+=fy;}if(!b.fixed){b.vx-=fx;b.vy-=fy;}});
+    vis.forEach(g=>{if(g.fixed)return;g.vx*=0.8;g.vy*=0.8;g.x+=g.vx;g.y+=g.vy;g.x=Math.max(24,Math.min(W-24,g.x));g.y=Math.max(24,Math.min(H-24,g.y));});}
+  function label(g){const n=g.n;if(n.kind==='round'){const c=D.docs.filter(d=>d.found===n.data.id).length;return c?c+' 篇文献':'';}
+    if(n.kind==='doc')return (n.data.number||n.data.title).slice(0,16);if(n.kind==='cand')return n.data.name.slice(0,14);return '';}
+  function draw(vis,es){const ctx=ctxRef.ctx;
+    ctx.setTransform(dpr,0,0,dpr,0,0);ctx.fillStyle=dark?'#0d1220':'#f7f5f0';ctx.fillRect(0,0,W,H);
+    if(dark){const g=ctx.createRadialGradient(W*0.5,H*0.45,60,W*0.5,H*0.45,Math.max(W,H)*0.75);g.addColorStop(0,'rgba(58,82,150,.22)');g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.fillRect(0,0,W,H);}
+    ctx.save();ctx.translate(panX,panY);ctx.scale(zoom,zoom);const step=40;const x0=Math.floor(-panX/zoom/step)*step,y0=Math.floor(-panY/zoom/step)*step,x1=(W-panX)/zoom,y1=(H-panY)/zoom;
+    ctx.fillStyle=dark?'rgba(255,255,255,.07)':'rgba(0,0,0,.08)';for(let x=x0;x<x1;x+=step)for(let y=y0;y<y1;y+=step){ctx.fillRect(x-0.6,y-0.6,1.2,1.2);}ctx.restore();
+    ctx.translate(panX,panY);ctx.scale(zoom,zoom);
+    const sel=selected;const nb=new Set();if(sel){es.forEach(e=>{if(e.a.key===sel||e.b.key===sel){nb.add(e.a.key);nb.add(e.b.key);}});}
+    const lw=1/Math.sqrt(zoom);const fewDocs=vis.filter(x=>x.kind==='doc').length<=16;const labels=[];
+    es.forEach(e=>{const on=!sel||e.a.key===sel||e.b.key===sel;ctx.globalAlpha=on?(e.kind==='found'?0.55:0.85):0.06;ctx.strokeStyle=e.color;ctx.lineWidth=e.w*lw;ctx.setLineDash(e.agg?[7,5]:[]);
+      const mx=(e.a.x+e.b.x)/2,my=(e.a.y+e.b.y)/2-(e.b.x-e.a.x)*0.06;ctx.beginPath();ctx.moveTo(e.a.x,e.a.y);ctx.quadraticCurveTo(mx,my,e.b.x,e.b.y);ctx.stroke();
+      if(e.agg){ctx.setLineDash([]);ctx.font='bold 10px sans-serif';ctx.fillStyle=e.color;ctx.fillText('×'+e.agg,mx+3,my-3);}
+      else if(sel&&on&&e.label&&e.kind!=='found'){ctx.font='10.5px -apple-system,"PingFang SC","Microsoft YaHei",sans-serif';ctx.fillStyle=dark?'#dfe3ea':'#333';ctx.strokeStyle=dark?'rgba(15,20,32,.9)':'rgba(255,255,255,.9)';ctx.lineWidth=3;ctx.lineJoin='round';ctx.strokeText(e.label,mx+3,my-3);ctx.fillText(e.label,mx+3,my-3);}});
+    ctx.setLineDash([]);
+    const FONT='-apple-system,"PingFang SC","Microsoft YaHei",sans-serif';
+    function pill(x,y,w,h){const r=h/2;ctx.beginPath();ctx.moveTo(x-w/2+r,y-h/2);ctx.lineTo(x+w/2-r,y-h/2);ctx.arc(x+w/2-r,y,r,-Math.PI/2,Math.PI/2);ctx.lineTo(x-w/2+r,y+h/2);ctx.arc(x-w/2+r,y,r,Math.PI/2,Math.PI*1.5);ctx.closePath();}
+    vis.forEach(g=>{const on=!sel||nb.has(g.key)||g.key===sel;ctx.globalAlpha=on?1:0.14;const col=g.kind==='fate'?FC[g.n.data.fate]:KC[g.kind];
+      const isPill=g.kind==='fate'||g.kind==='common';
+      if(isPill){const w=pillW(g),h=26;
+        ctx.shadowBlur=(g.key===sel||g===hover)?24:(dark?8:0);ctx.shadowColor=col;pill(g.x,g.y,w,h);ctx.fillStyle=g.kind==='fate'?col:(dark?'#2a3040':'#e9e6df');ctx.fill();ctx.shadowBlur=0;
+        pill(g.x,g.y,w,h);ctx.strokeStyle=g.kind==='fate'?'rgba(255,255,255,.45)':(dark?'#8a93a3':'#9aa3ad');ctx.lineWidth=1.2*lw;if(g.kind==='common')ctx.setLineDash([3,3]);ctx.stroke();ctx.setLineDash([]);
+        if(g.key===sel){pill(g.x,g.y,w+10,h+10);ctx.strokeStyle=dark?'#fff':'#222';ctx.lineWidth=1.5*lw;ctx.setLineDash([3,3]);ctx.stroke();ctx.setLineDash([]);}
+        ctx.fillStyle=g.kind==='fate'?'#fff':(dark?'#e8ebf1':'#333');ctx.font='600 12px '+FONT;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(g.kind==='fate'?g.n.data.fate:g.n.l1,g.x,g.y+0.5);ctx.textAlign='left';ctx.textBaseline='alphabetic';
+        return;}
+      if(g.kind!=='doc'){ctx.beginPath();ctx.arc(g.x,g.y,g.r+5,0,Math.PI*2);ctx.fillStyle=col;ctx.globalAlpha*=0.18;ctx.fill();ctx.globalAlpha=on?1:0.14;}
+      ctx.shadowBlur=(g.key===sel||g===hover)?28:(dark?10:0);ctx.shadowColor=col;ctx.beginPath();ctx.arc(g.x,g.y,g.r,0,Math.PI*2);ctx.fillStyle=col;ctx.fill();ctx.shadowBlur=0;
+      if(dark){ctx.strokeStyle='rgba(255,255,255,.35)';ctx.lineWidth=1*lw;ctx.stroke();}
+      if(g.kind==='cand'){ctx.beginPath();ctx.arc(g.x,g.y,g.r+3.5,0,Math.PI*2);ctx.strokeStyle=FC[g.n.data.fate];ctx.lineWidth=2.6*lw;ctx.stroke();}
+      if(g.key===sel){ctx.beginPath();ctx.arc(g.x,g.y,g.r+(g.kind==='cand'?7:4),0,Math.PI*2);ctx.strokeStyle=dark?'#fff':'#222';ctx.lineWidth=1.5*lw;ctx.setLineDash([3,3]);ctx.stroke();ctx.setLineDash([]);}
+      // 圆里写编号：R5 / C7 / P12
+      const idText=g.n.data.id;const fs=g.kind==='doc'?Math.max(7.5,Math.min(9.5,g.r*0.85)):Math.max(10,Math.min(13,g.r*0.72));
+      ctx.fillStyle=g.kind==='doc'?(dark?'#1a1408':'#3a2a10'):(g.kind==='round'?'#3a2f05':'#fff');ctx.font='700 '+fs+'px '+FONT;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(idText,g.x,g.y+0.5);ctx.textAlign='left';ctx.textBaseline='alphabetic';
+      // 轮次右下角的收放小标
+      if(g.kind==='round'){const bx=g.x+g.r*0.72,by=g.y+g.r*0.72;ctx.beginPath();ctx.arc(bx,by,6.5,0,Math.PI*2);ctx.fillStyle=dark?'#0d1220':'#fff';ctx.fill();ctx.strokeStyle=col;ctx.lineWidth=1.2*lw;ctx.stroke();ctx.fillStyle=col;ctx.font='700 11px '+FONT;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(expanded.has(g.n.data.id)?'−':'+',bx,by+0.5);ctx.textAlign='left';ctx.textBaseline='alphabetic';}
+      const show=(g.kind==='cand')||(g.kind==='round')||(g.kind==='doc'&&(fewDocs||zoom>1.15||g.key===sel||nb.has(g.key)||g===hover));
+      if(show&&label(g))labels.push({g,on});});
+    // 标签避让：按重要度排，后来的躲开先放的；右、下、上、左四个位置试一遍
+    const placed=[];const prio={cand:0,fate:1,round:2,common:3,doc:4};
+    // 胶囊节点和大圆本身也是障碍，标签别压在它们身上
+    vis.forEach(g=>{if(g.kind==='fate'||g.kind==='common'){const w=pillW(g);placed.push({x:g.x-w/2-4,y:g.y-17,w:w+8,h:34});}else if(g.kind!=='doc'){placed.push({x:g.x-g.r-2,y:g.y-g.r-2,w:g.r*2+4,h:g.r*2+4});}});
+    labels.sort((a,b)=>(prio[a.g.kind]-prio[b.g.kind])||(b.g.r-a.g.r));
+    labels.forEach(({g,on})=>{const t=label(g);const font=(g.kind==='cand'||g.kind==='round'||g.kind==='fate'?'600 ':'')+(g.kind==='doc'?'11px':'12px')+' -apple-system,"PingFang SC","Microsoft YaHei",sans-serif';ctx.font=font;
+      const w=ctx.measureText(t).width,h=14;const rr=g.kind==='round'?g.r+4:g.r;const cands=[[g.x+rr+5,g.y+4],[g.x-w/2,g.y+rr+15],[g.x-w/2,g.y-rr-6],[g.x-rr-5-w,g.y+4]];
+      let pos=cands[0];for(const c of cands){const box={x:c[0],y:c[1]-h+3,w,h};if(!placed.some(b=>!(box.x>b.x+b.w||b.x>box.x+box.w||box.y>b.y+b.h||b.y>box.y+box.h))){pos=c;break;}}
+      placed.push({x:pos[0],y:pos[1]-h+3,w,h});
+      ctx.globalAlpha=on?1:0.14;ctx.fillStyle=g.kind==='round'?(dark?'#c9cfda':'#6b7280'):(dark?'#e8ebf1':'#1f2328');ctx.strokeStyle=dark?'rgba(13,18,32,.9)':'rgba(247,245,240,.92)';ctx.lineWidth=3;ctx.lineJoin='round';ctx.strokeText(t,pos[0],pos[1]);ctx.fillText(t,pos[0],pos[1]);});
+    ctx.globalAlpha=1;}
+  let fitPending=false;
+  function fit(){const vis=gn.filter(visible);if(!vis.length)return;let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;vis.forEach(g=>{x0=Math.min(x0,g.x-g.r);y0=Math.min(y0,g.y-g.r);x1=Math.max(x1,g.x+g.r+(g.kind==='doc'?60:150));y1=Math.max(y1,g.y+g.r);});
+    const pad=30;const z=Math.max(0.35,Math.min(1.6,Math.min((W-pad*2)/(x1-x0),(H-pad*2)/(y1-y0))));zoom=z;panX=(W-(x1-x0)*z)/2-x0*z;panY=(H-(y1-y0)*z)/2-y0*z;render();}
+  let fc=0;
+  function frame(){const vis=gn.filter(visible),es=activeEdges();physics(vis,es);fc++;if(fitPending&&fc%12===0)fit();else draw(vis,es);alpha*=0.975;if(alpha>0.02||dragging){raf=requestAnimationFrame(frame);}else{raf=null;if(fitPending){fitPending=false;fit();}}}
+  function render(){const vis=gn.filter(visible);draw(vis,activeEdges());}
+  function kick(a){alpha=Math.max(alpha,a==null?0.5:a);if(!raf)raf=requestAnimationFrame(frame);}
+  function resize(){if(wrap.offsetParent===null)return;dpr=window.devicePixelRatio||1;W=wrap.clientWidth;H=Math.max(600,Math.min(900,window.innerHeight-250));cv.width=W*dpr;cv.height=H*dpr;cv.style.width=W+'px';cv.style.height=H+'px';if(!seeded){seed();fitPending=true;}kick(0.6);}
+  function toWorld(ev){const r=cv.getBoundingClientRect();const sx=ev.clientX-r.left,sy=ev.clientY-r.top;return{x:(sx-panX)/zoom,y:(sy-panY)/zoom,sx,sy};}
+  function hit(p){let best=null,bd=1e9;gn.filter(visible).forEach(g=>{const isPill=g.kind==='fate'||g.kind==='common';const d=Math.hypot(g.x-p.x,g.y-p.y);const lim=isPill?Math.max(15,pillW(g)/2):g.r+4;if(d<lim&&d<bd){bd=d;best=g;}});return best;}
+  function tipHtml(g){const n=g.n;if(n.kind==='round'){const r=n.data;return '<b>'+esc(r.id)+'</b><br>'+esc(r.purpose)+'<br><span style="opacity:.7">查询式 '+r.queries.length+' 条 · 检出 '+D.docs.filter(d=>d.found===r.id).length+' 篇 · 点击'+(expanded.has(r.id)?'收起':'展开')+'</span>';}
+    if(n.kind==='doc'){const d=n.data;return '<b>'+esc(d.id+' '+d.number)+'</b><br>'+esc(d.title)+'<br><span style="opacity:.7">'+esc([d.kind,ftShow(d.fulltext),roleShow(d.role)].filter(Boolean).join(' · '))+'</span>';}
+    if(n.kind==='cand'){const c=n.data;return '<b>'+esc(c.id+' '+c.name)+'</b><br>'+esc(c.summary)+'<br><span style="opacity:.7">→ '+esc(c.fate+(c.landing?'：'+c.landing:''))+'</span>';}
+    if(n.kind==='fate')return '<b>'+esc(n.data.fate)+'</b><br>'+esc(n.l2);return '<b>'+esc(n.l1)+'</b><br>'+esc(n.l2);}
+  function showTip(g,ev){if(!g){tip.style.display='none';return;}tip.innerHTML=tipHtml(g);tip.style.display='block';moveTip(ev);}
+  function moveTip(ev){const r=wrap.getBoundingClientRect();let x=ev.clientX-r.left+14,y=ev.clientY-r.top+14;if(x+tip.offsetWidth>W-8)x=Math.max(8,x-tip.offsetWidth-28);if(y+tip.offsetHeight>r.height-8)y=Math.max(8,y-tip.offsetHeight-28);tip.style.left=x+'px';tip.style.top=y+'px';}
+  cv.addEventListener('mousedown',ev=>{const p=toWorld(ev);const g=hit(p);dragMoved=false;if(g){dragging=g;g.fixed=true;cv.style.cursor='grabbing';}else{panning={x:ev.clientX,y:ev.clientY,px:panX,py:panY};cv.style.cursor='grabbing';}tip.style.display='none';});
+  window.addEventListener('mousemove',ev=>{if(dragging){const p=toWorld(ev);dragging.x=p.x;dragging.y=p.y;dragMoved=true;kick(0.3);return;}
+    if(panning){panX=panning.px+(ev.clientX-panning.x);panY=panning.py+(ev.clientY-panning.y);if(Math.abs(ev.clientX-panning.x)+Math.abs(ev.clientY-panning.y)>3)dragMoved=true;render();return;}
+    if(ev.target===cv){const g=hit(toWorld(ev));if(g!==hover){hover=g;cv.style.cursor=g?'pointer':'grab';showTip(g,ev);render();}else if(g)moveTip(ev);}});
+  window.addEventListener('mouseup',ev=>{if(dragging){const g=dragging;dragging=null;g.fixed=false;cv.style.cursor='grab';if(!dragMoved)onClick(g);kick(0.3);return;}
+    if(panning){panning=null;cv.style.cursor='grab';if(!dragMoved&&ev.target===cv)select(null);}});
+  cv.addEventListener('wheel',ev=>{ev.preventDefault();const p=toWorld(ev);const f=ev.deltaY<0?1.12:1/1.12;const nz=Math.max(0.3,Math.min(3.5,zoom*f));panX=p.sx-p.x*nz;panY=p.sy-p.y*nz;zoom=nz;render();},{passive:false});
+  cv.addEventListener('dblclick',ev=>{if(!hit(toWorld(ev))){zoom=1;panX=0;panY=0;render();}});
+  cv.addEventListener('mouseleave',()=>{hover=null;tip.style.display='none';render();});
+  function toggleRound(id){if(expanded.has(id)){expanded.delete(id);}else{expanded.add(id);const R=gById['R:'+id];gn.forEach(g=>{if(g.kind==='doc'&&g.n.data.found===id){g.x=R.x+60+(Math.random()-0.5)*50;g.y=R.y+(Math.random()-0.5)*80;g.vx=g.vy=0;}});}kick(0.7);}
+  function onClick(g){if(g.kind==='round')toggleRound(g.n.data.id);select(g.key);}
+  document.getElementById('g-expand').onclick=()=>{D.rounds.forEach(r=>{if(!expanded.has(r.id))toggleRound(r.id);});};
+  document.getElementById('g-collapse').onclick=()=>{D.rounds.forEach(r=>expanded.delete(r.id));kick(0.7);};
+  document.getElementById('g-relayout').onclick=()=>{seed();zoom=1;panX=0;panY=0;fitPending=true;kick(1);};
+  document.getElementById('g-fit').onclick=()=>fit();
+  document.getElementById('g-theme').onclick=function(){dark=!dark;wrap.classList.toggle('light',!dark);this.textContent=dark?'浅色':'深色';render();};
+  function savePng(url,name){const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();}
+  document.getElementById('g-png').onclick=()=>{const scale=2;const c=document.createElement('canvas');c.width=W*scale;c.height=H*scale;const odpr=dpr;const c2=c.getContext('2d');
+    // 借用同一套画法：临时把 ctx 指向导出画布
+    const vis=gn.filter(visible),es=activeEdges();const saveCtx=ctxRef.ctx;ctxRef.ctx=c2;dpr=scale;draw(vis,es);ctxRef.ctx=saveCtx;dpr=odpr;render();
+    savePng(c.toDataURL('image/png'),'检索轨迹图谱-'+D.case+'.png');};
+  document.getElementById('f-png').onclick=()=>{const svgEl=document.getElementById('g');const w=+svgEl.getAttribute('width'),h=+svgEl.getAttribute('height');
+    const clone=svgEl.cloneNode(true);clone.setAttribute('xmlns','http://www.w3.org/2000/svg');
+    const css=document.querySelector('style').textContent;const st=document.createElementNS('http://www.w3.org/2000/svg','style');st.textContent=css;clone.insertBefore(st,clone.firstChild);
+    const xml=new XMLSerializer().serializeToString(clone);const img=new Image();
+    img.onload=()=>{const c=document.createElement('canvas');c.width=w*2;c.height=h*2;const x=c.getContext('2d');x.fillStyle='#fff';x.fillRect(0,0,c.width,c.height);x.scale(2,2);x.drawImage(img,0,0);savePng(c.toDataURL('image/png'),'检索轨迹流程图-'+D.case+'.png');};
+    img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(xml);};
+  document.querySelectorAll('.gtools .chip').forEach(c=>{c.onclick=()=>{const f=c.dataset.f;filter[f]=!filter[f];c.classList.toggle('off',!filter[f]);kick(0.3);};});
+  const tabG=document.getElementById('tab-graph'),tabF=document.getElementById('tab-flow'),gw=document.querySelector('.gwrap');
+  tabG.onclick=()=>{tabG.classList.add('on');tabF.classList.remove('on');wrap.style.display='';gw.style.display='none';curView='graph';if(!selected)panel(null);resize();};
+  tabF.onclick=()=>{tabF.classList.add('on');tabG.classList.remove('on');wrap.style.display='none';gw.style.display='';curView='flow';if(!selected)panel(null);};
+  window.addEventListener('resize',()=>{if(wrap.style.display!=='none'){const os=seeded;resize();if(os)kick(0.4);}});
+  resize();
+  return {refresh:()=>{if(seeded)kick(0.4);}};
+})();
+
+panel(null);
+// 演变表
+const evo=document.getElementById('evo');const T=D.evolution;
+evo.innerHTML='<tr>'+T[0].map(h=>'<th>'+esc(h)+'</th>').join('')+'</tr>'+T.slice(1).map(r=>'<tr>'+r.map((c,i)=>'<td class="'+(i===0?'c':'')+'">'+esc(c).replace(/(明文记载|毫无疑义确定)/g,'<span class="killed">$1</span>').replace(/(部分接近|记载不清)/g,'<span class="near">$1</span>').replace(/(未记载)/g,'<span class="clear">$1</span>').replace(/(教导相反)/g,'<span class="away">$1</span>').replace(/(实测推翻)/g,'<span class="killed">$1</span>').replace(/(实测支持)/g,'<span class="clear">$1</span>')+'</td>').join('')+'</tr>').join('');
+apply();
+})();
+</script>
+</body>
+</html>

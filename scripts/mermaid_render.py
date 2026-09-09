@@ -236,6 +236,9 @@ def ensure_step_ids_in_visible_labels(src: str) -> tuple[str, int]:
 
 _FENCE_OPEN_RE = re.compile(r"^\s{0,3}(`{3,}|~{3,})\s*(\S*)")
 _CAPTION_RE = re.compile(r"^\s*(?:#{1,6}\s*)?(?:\*\*)?图\s*(\d+)")
+# 「附图说明」栏目里的条目长这样：图1 是……／图 2 为……。它们不是围栏的标题，
+# 只是碰巧排在第一个围栏前面。把它们当标题会让整篇图号从 2 起排（实测踩过）。
+_FIGURE_LIST_RE = re.compile(r"^\s*(?:#{1,6}\s*)?(?:\*\*)?图\s*\d+\s*[是为]")
 
 
 @dataclass
@@ -258,13 +261,28 @@ class RenderResult:
 
 
 def _caption_number(lines: list[str], fence_idx: int) -> int | None:
+    """围栏上方那行如果是「图 N ……」的自定标题，就沿用那个 N。
+
+    两种情况不算标题，返回 None：
+    - 那行是「附图说明」栏目的条目（图 N 是……／图 N 为……）；
+    - 它上面还有一行「图 M ……」，说明这是一份图号清单而不是单张图的标题。
+    """
     k = fence_idx - 1
     while k >= 0 and not lines[k].strip():
         k -= 1
     if k < 0:
         return None
     m = _CAPTION_RE.match(lines[k])
-    return int(m.group(1)) if m else None
+    if not m:
+        return None
+    if _FIGURE_LIST_RE.match(lines[k]):
+        return None
+    prev = k - 1
+    while prev >= 0 and not lines[prev].strip():
+        prev -= 1
+    if prev >= 0 and _CAPTION_RE.match(lines[prev]):
+        return None
+    return int(m.group(1))
 
 
 def extract_mermaid_blocks(md_text: str) -> list[MermaidBlock]:

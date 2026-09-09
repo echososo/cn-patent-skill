@@ -508,5 +508,30 @@ class RealRenderTest(unittest.TestCase):
             self.assertFalse((out_md.parent / "mermaid_figures" / "fig_002.png").exists())
 
 
+
+class 附图说明不当标题(unittest.TestCase):
+    """「附图说明」栏目的条目排在第一个围栏前面时，图号必须仍从 1 起排。"""
+
+    def test_附图说明条目不被当成标题(self):
+        md = (
+            "## 附图说明\n\n"
+            "图1 是本发明实施例的工艺流程图；\n\n"
+            "图2 是本发明实施例的状态迁移图。\n\n"
+            "```mermaid\ngraph TD\n  A-->B\n```\n\n"
+            "```mermaid\ngraph TD\n  C-->D\n```\n"
+        )
+        blocks = mr.extract_mermaid_blocks(md)
+        self.assertEqual([b.caption_no for b in blocks], [None, None])
+
+    def test_单张图的自定标题仍然沿用(self):
+        md = "图 3 系统结构示意图\n\n```mermaid\ngraph TD\n  A-->B\n```\n"
+        blocks = mr.extract_mermaid_blocks(md)
+        self.assertEqual(blocks[0].caption_no, 3)
+
+    def test_连续图号清单不被当成标题(self):
+        md = "图 1 总体框图\n图 2 分解框图\n\n```mermaid\ngraph TD\n  A-->B\n```\n"
+        blocks = mr.extract_mermaid_blocks(md)
+        self.assertIsNone(blocks[0].caption_no)
+
 if __name__ == "__main__":
     unittest.main()

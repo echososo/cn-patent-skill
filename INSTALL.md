@@ -5,7 +5,7 @@
 
 ## 一、一键装（推荐）
 
-解压后进到 `patent-writing-pro` 文件夹里，跑一条命令：
+`git clone` 之后进到仓库目录里，跑一条命令：
 
 **macOS / Linux / WSL / Git Bash**
 
@@ -50,7 +50,7 @@ Windows 上把 `~` 换成 `%USERPROFILE%`，斜杠换成反斜杠。
 
 ## 三、三个容易踩的坑
 
-**1. 文件夹名不能改。** 必须就叫 `patent-writing-pro`，和 `SKILL.md` 里的 `name` 一致。
+**1. 装到宿主目录之后，文件夹名不能改。** 必须就叫 `patent-writing-pro`，和 `SKILL.md` 里的 `name` 一致（一键脚本会自动用这个名字，克隆下来的仓库目录叫什么都不影响）。
 Cursor 按这个名字匹配，改了名它就找不到。
 
 **2. SKILL.md 不能带 BOM。** Codex 加载带 UTF-8 BOM 的 `SKILL.md` 会直接不认。

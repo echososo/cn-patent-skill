@@ -44,7 +44,7 @@ python3 scripts/strip_personal.py .
 
 ## 改规则
 
-- 规则文本按 CC BY-NC-SA 4.0 授权，提交 PR 即表示你同意你的改动以同一许可发布。
+- 本仓库（规则和代码）按 CC BY-NC-SA 4.0 授权，提交 PR 即表示你同意你的改动以同一许可发布。
 - 一条规则要能被 agent 执行，不能只是一句正确的废话。写清楚**什么时候读这一节、
   读完要产出什么、什么情况下不适用**。
 - 引法条要给条款号，并和 `references/official/` 里的原文对得上。2023 年实施细则改过编号，
@@ -79,8 +79,8 @@ convention — last stdout line `OK: k=v ...` on success; one stderr line
 `FAIL: reason` on failure, exit `2` for an unavailable dependency or entry
 point, `1` for input or runtime errors. **Tests must be fully offline.**
 
-**Rules**: licensed CC BY-NC-SA 4.0; opening a PR means you agree your changes
-ship under the same license. A rule must be executable by an agent — say when to
+**License**: the whole repository is CC BY-NC-SA 4.0; opening a PR means you agree
+your changes ship under the same license. A rule must be executable by an agent — say when to
 read it, what it must produce, and when it does not apply. Cite article numbers
 that match `references/official/`.
 
